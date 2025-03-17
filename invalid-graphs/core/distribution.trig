@@ -1,0 +1,327 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-distributions/>
+PREFIX testgraphs: <https://example.com/test-graphs/invalid/distribution/>
+
+
+# ===== Testing invalid Distribution descriptions =====
+
+
+# ----- Access URL -----
+
+testgraphs:accessURL-1 {
+    <http://example.com/distribution> a dcat:Distribution . # Missing mandatory property accessURL
+}
+
+testgraphs:accessURL-2 {
+    <http://example.com/distribution> a dcat:Distribution ;
+        dcat:accessURL "http://example.com/invalid-access-url"^^xsd:anyURI . # invalid type
+}
+
+# ----- Description -----
+
+testgraphs:description-1 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:description "English description 1"@en, "English description 2"@en . # Only 1 per language allowed
+}
+
+testgraphs:description-2 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:description <http://example.com/invalid-type> . # invalid type
+}
+
+testgraphs:description-3 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:description [ a skos:Concept ] . # invalid type
+}
+
+
+# ----- Format / CV File Type -----
+
+testgraphs:format-1 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:format "InvalidType"^^xsd:anyURI . # invalid type
+}
+
+testgraphs:format-2 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON>,        # too many values, max 1 allowed
+                   <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> .
+}
+
+testgraphs:format-3 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:format <http://example.com/file-type/JSON> .   # not from File Type
+}
+
+testgraphs:format-4 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:format [ # blank nodes not allowed
+            a skos:Concept ;
+            skos:inScheme <http://publications.europa.eu/resource/authority/file-type>
+        ] . 
+}
+
+# ----- License / CV License -----
+
+testgraphs:license-1 {
+    test:validDistributionBase ;
+        dct:license "http://example.com/a-valid-identifier"^^xsd:anyURI; # invalid type
+        .
+}
+
+testgraphs:license-2 {
+    test:validDistributionBase ;
+        dct:license <http://publications.europa.eu/resource/authority/licence/CC0>,
+            <http://publications.europa.eu/resource/authority/licence/APACHE_2_0>; # invalid, max 1 value
+        .
+}
+
+
+# ----- Status / CV Distribution Status -----
+
+
+testgraphs:status-1 {
+    test:validDistributionBase ;
+        adms:status "invalid status"; # invalid type
+        .
+}
+
+testgraphs:status-2 {
+    test:validDistributionBase ;
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ,  # invalid, max 1 value
+                    <http://publications.europa.eu/resource/authority/distribution-status/DEPRECATED> ;
+        .
+}
+
+
+# ----- Availability / CV Planned Availability -----
+
+testgraphs:status-1 {
+    test:validDistributionBase ;
+        dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/EXPERIMENTAL> , # too many, max 1 allowed
+                            <http://publications.europa.eu/resource/authority/planned-availability/STABLE> .
+}
+
+testgraphs:status-2 {
+    test:validDistributionBase ;
+        dcatap:availability "http://publications.europa.eu/resource/authority/planned-availability/EXPERIMENTAL"^^xsd:anyURI . # invalid type
+}
+
+testgraphs:status-3 {
+    test:validDistributionBase ;
+        dcatap:availability <http://example.com/not-from-eu-vocabulary> . # not from vocabulary
+}
+
+
+# ----- Page -----
+
+testgraphs:page-1 {
+    test:validDistributionBase ;
+        foaf:page "http://example.com/info-page"^^xsd:anyURI . # invalid type
+}
+
+testgraphs:page-2 {
+    test:validDistributionBase ;
+        foaf:page [ a foaf:Document ; ] . # invalid type
+}
+
+# ----- Modified -----
+
+testgraphs:modified-1 {
+    test:validDistributionBase ;
+        dct:modified "1234567890"^^xsd:int . # invalid type
+}
+
+testgraphs:modified-2 {
+    test:validDistributionBase ;
+        dct:modified  "2025-01-01"^^xsd:date ,  # too many values
+                      "2025-01-01T12:00:00"^^xsd:dateTime. 
+}
+
+
+# ----- Byte Size -----
+
+testgraphs:byteSize-1 {
+    test:validDistributionBase ;
+        dcat:byteSize "2048"^^xsd:nonNegativeInteger ,
+          "1024"^^xsd:nonNegativeInteger .
+}
+
+testgraphs:byteSize-2 {
+    test:validDistributionBase ;
+        dcat:byteSize "2048"^^xsd:int ; # invalid type
+}
+
+
+# ----- Applicable Legislation -----
+
+testgraphs:applicableLegislation-1 {
+    test:validDistributionBase ;
+        dcatap:applicableLegislation "https://example.com/legislation"^^xsd:anyURI . # invalid type
+}
+
+testgraphs:applicableLegislation-2 {
+    test:validDistributionBase ;
+        dcatap:applicableLegislation [ a eli:LegalResource ] . # invalid type
+}
+
+
+# ----- Conforms To -----
+
+testgraphs:conformsTo-1 {
+    test:validDistributionBase ;
+        dct:conformsTo "http://example.com/data-model-1"^^xsd:anyURI . # invalid type
+}
+
+testgraphs:conformsTo-2 {
+    test:validDistributionBase ;
+        dct:conformsTo [ a dct:Standard ] . # invalid type
+}
+
+
+# ----- Compress Format / CV File Type (?) -----
+
+testgraphs:compressFormat-1 {
+    test:validDistributionBase ;
+        dcat:compressFormat <https://www.w3.org/ns/iana/media-types/application/zip>, # too many values
+            <https://www.w3.org/ns/iana/media-types/application/zlib> .
+}
+
+testgraphs:compressFormat-2 {
+    test:validDistributionBase ;
+        dcat:compressFormat "https://www.w3.org/ns/iana/media-types/application/zip"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:compressFormat-3 {
+    test:validDistributionBase ;
+        dcat:compressFormat [ a dct:MediaType ] .  # wrong type
+}
+
+
+# ----- Media Type / Namespace IANA -----
+
+testgraphs:mediaType-1 {
+    test:validDistributionBase ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/xml>, # too many values
+            <https://www.w3.org/ns/iana/media-types/application/json> .
+}
+
+testgraphs:mediaType-2 {
+    test:validDistributionBase ;
+        dcat:mediaType "https://www.w3.org/ns/iana/media-types/application/json"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:mediaType-3 {
+    test:validDistributionBase ;
+        dcat:mediaType [ a dct:MediaType ] .  # wrong type
+}
+
+
+testgraphs:mediaType-4 {
+    test:validDistributionBase ;
+        dcat:mediaType <http://example.com/a-media-type> .  # not from IANA
+}
+
+
+# ----- DownloadURL -----
+
+
+testgraphs:downloadURL-1 {
+    test:validDistributionBase ;
+        dcat:downloadURL "https://example.com/first-access-to-file"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:downloadURL-2 {
+    test:validDistributionBase ;
+        dcat:downloadURL [ a rdfs:Resource ] . # wrong type
+}
+
+
+# ----- Package Format / CV File Type (?) -----
+
+testgraphs:packageFormat-1 {
+    test:validDistributionBase ;
+        dcat:packageFormat <https://www.w3.org/ns/iana/media-types/application/gzip>, # too many values
+            <https://www.w3.org/ns/iana/media-types/application/vnd.rar> .
+}
+
+testgraphs:compressFormat-2 {
+    test:validDistributionBase ;
+        dcat:packageFormat "https://www.w3.org/ns/iana/media-types/application/gzip"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:compressFormat-3 {
+    test:validDistributionBase ;
+        dcat:packageFormat [ a dct:MediaType ] .  # wrong type
+}
+
+
+# ----- Has Policy -----
+
+testgraphs:hasPolicy-1 {
+    test:validDistributionBase ;
+        odrl:hasPolicy <https://example.com/policy> .  # missing instance of odrl:Policy
+}
+
+testgraphs:hasPolicy-2 {
+    test:validDistributionBase ;
+        odrl:hasPolicy <https://example.com/policy>, <https://example.com/policy> .  # too many values
+}
+
+testgraphs:hasPolicy-3 {
+    test:validDistributionBase ;
+        odrl:hasPolicy "https://example.com/policy"^^xsd:anyURI . # wrong type
+}
+
+
+# ----- Rights -----
+
+
+# ----- Spatial Resolution In Meters -----
+
+
+# ----- Checksum -----
+
+
+# ----- Language / CV Language -----
+
+
+# ----- Temporal Resolution -----
+
+
+# ----- Access Service -----
+
+
+# ----- Title -----
+
+
+# ----- Issued -----
+

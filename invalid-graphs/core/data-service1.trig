@@ -1,0 +1,465 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-dataservices/>
+PREFIX testgraphs: <http://example.com/test-graphs/invalid/data-services/>
+
+# ===== Testing invalid Data Service descriptions =====
+
+# ----- Endpoint URL -----
+
+testgraphs:endpointURL-1 {
+    test:validDataServiceBase
+        dcat:endpointURL <https://example.com/1>, <https://example.com/2> ; # multiple endpoint URLs
+        .
+}
+
+testgraphs:endpointURL-2 {
+    test:invalidDataService a dcat:DataService ;
+        dct:title "Invalid Data Service"@en ;
+        dcat:contactPoint test:contactPointBase ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+        dcat:endpointURL "http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE" ; # invalid type
+    .
+}
+
+testgraphs:endpointURL-3 {
+    test:invalidDataService a dcat:DataService ;
+        dct:title "Invalid Data Service"@en ;
+        dcat:contactPoint test:contactPointBase ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+        # ... missing dcat:endpointURL
+    .
+}
+
+
+# ----- Contact Point -----
+
+testgraphs:contactPoint-1 {
+    test:invalidDataService a dcat:DataService ;
+        dct:title "Base Data Service"@en ;
+        dcat:contactPoint test:contactPoint;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+        dcat:endpointURL <https://example.com/> ;
+    .
+
+    test:contactPoint a foaf:Agent . # wrong type
+}
+
+testgraphs:contactPoint-2 {
+    test:invalidDataService a dcat:DataService ;
+        dct:title "Base Data Service"@en ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+        dcat:endpointURL <https://example.com/> ;
+        # ... missing dcat:contactPoint
+    .
+}
+
+
+# ----- Title -----
+
+testgraphs:title-1 {
+    test:invalidDataService a dcat:DataService ;
+        # ... missing dct:title
+        dcat:contactPoint test:contactPointBase ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+        dcat:endpointURL <http://example.com/> ;
+    .
+}
+
+testgraphs:title-2 {
+    test:validDataServiceBase
+        dct:title <http://invalid-as-a-title> ; # invalid type
+        .
+}
+
+testgraphs:title-3 {
+    test:validDataServiceBase
+        dct:title "invalid as a title" ; # invalid type (not a langstring)
+        .
+}
+
+testgraphs:title-4 {
+    test:validDataServiceBase
+        dct:title "bokmålstekst nummer 1"@nb, "bokmålstittel nummer 2"@nb ; # more than one per language
+        .
+}
+
+
+# ----- Publisher -----
+
+testgraphs:publisher-1 {
+    test:invalidDataService a dcat:DataService ;
+        dct:title "Base Data Service"@en ;
+        dcat:contactPoint test:contactPointBase ;
+        # ... missing dct:publisher
+        #dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+        dcat:endpointURL <http://example.com/> ;
+        .
+}
+
+testgraphs:publisher-2 {
+    test:validDataServiceBase
+        dct:publisher   <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827>,  # more than one
+                        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> ;
+        .
+}
+
+testgraphs:publisher-3 {
+    test:invalidDataService a dcat:DataService ;
+        dct:title "Base Data Service"@en ;
+        dcat:contactPoint test:contactPointBase ;
+        dcat:endpointURL <http://example.com/> ;
+        dct:publisher "https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827" ; # wrong type
+}
+
+
+# ----- Keyword -----
+
+testgraphs:keyword-1 {
+    test:validDataServiceBase
+        dcat:keyword "Not a langstring"; # invalid, not a langstring
+        .
+}
+
+testgraphs:keyword-2 {
+    test:validDataServiceBase
+        dcat:keyword <http://not-a-literal.com>; # invalid, not a langstring
+        .
+}
+
+
+# ----- Endpoint Description -----
+
+testgraphs:endpointDescription-1 {
+    test:validDataServiceBase ;
+        dcat:endpointDescription "not-an-url-to-description";
+        .
+}
+
+testgraphs:endpointDescription-2 {
+    test:validDataServiceBase ;
+        dcat:endpointDescription [ a rdfs:Resource ]; # blank nodes not valid
+        .
+}
+
+
+# ----- Format -----
+
+testgraphs:format-1 {
+    test:validDataServiceBase ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> , "https://example.com/format/JSON"; # skal feile
+}
+
+testgraphs:format-2 {
+    test:validDataServiceBase ;
+        dct:format "http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE" , "https://example.com/format/JSON"; # skal feile
+}
+
+testgraphs:format-3 {
+    test:validDataServiceBase ;
+        dct:format <https://example.com/format/JSON>; # skal feile alene
+}
+
+testgraphs:format-4 {
+    test:validDataServiceBase ;
+        dct:format [ a skos:Concept ; skos:prefLabel "test" ]; # skal feile
+}
+
+testgraphs:format-5 {
+    test:validDataServiceBase ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> , <https://example.com/format/JSON> ;
+        .
+}
+
+
+# ----- Applicable Legislation -----
+
+testgraphs:applicableLegislation-1 {
+    test:validDataServiceBase ;
+        dcatap:applicableLegislation "https://lovdata.no/eli/forskrift/2016/12/15/1600" ; # not a URI
+        .
+}
+
+testgraphs:applicableLegislation-2 {
+    test:validDataServiceBase ;
+        dcatap:applicableLegislation [ a rdfs:Resource ] ; # blank nodes not allowed
+        .
+}
+
+
+# ----- Conforms To -----
+
+testgraphs:conformsTo-1 {
+    test:validDataServiceBase ;
+        dct:conformsTo "https://www.w3.org/TR/sparql11-protocol/" ; # invalid type
+        .
+}
+
+
+# ----- Theme -----
+
+testgraphs:theme-1 {
+    test:validDataServiceBase ;
+        dcat:theme "http://publications.europa.eu/resource/authority/data-theme/GOVE" ; # invalid type
+        .
+}
+
+
+# ----- Serves Dataset -----
+
+testgraphs:servesDataset-1 {
+    test:validDataServiceBase ;
+        dcat:servesDataset "http://example.com/datasets/dataset1" ; # invalid type
+        .
+}
+
+testgraphs:servesDataset-2 {
+    test:validDataServiceBase ;
+        dcat:servesDataset [  # blank nodes not allowed
+            a dcat:Dataset ;
+            dct:title "Valid dataset"@en ;
+            dct:description "Valid description"@en ;
+            dcat:contactPoint test:contactPointBase ;
+            dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+            dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+            dct:identifier "123456789" ;  # TODO: remove
+        ] ;
+        .
+}
+
+
+# ----- Availability / CV Planned Availability -----
+
+testgraphs:availability-1 {
+    test:validDataServiceBase ;
+        dcatap:availability "http://publications.europa.eu/resource/authority/planned-availability/STABLE"; # invalid type
+        .
+}
+
+testgraphs:availability-2 {
+    test:validDataServiceBase ;
+        dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/STABLE>, # too many values
+                            <http://publications.europa.eu/resource/authority/planned-availability/UNSTABLE> ;
+        .
+}
+
+
+# ----- Description -----
+
+testgraphs:description-1 {
+    test:validDataServiceBase ;
+        dct:description <http://example.com/invalid-description>; # invalid type
+        .
+}
+
+testgraphs:description-2 {
+    test:validDataServiceBase ;
+        dct:description [ a skos:Concept ; rdfs:label "Invalid description" ]; # invalid type
+        .
+}
+
+testgraphs:description-3 {
+    test:validDataServiceBase ;
+        dct:description "English description 1"@en, "English description 2"@en; # invalid: more than one per language
+        .
+}
+
+
+# ----- Page -----
+
+testgraphs:page-1 {
+    test:validDataServiceBase ;
+        foaf:page "http://example.com/example";
+        .
+}
+
+testgraphs:page-2 {
+    test:validDataServiceBase ;
+        foaf:page [ a foaf:Document; dct:description "some page" ]; # not an URI
+        .
+}
+
+
+# ----- Cost -----
+
+testgraphs:cost-1 {
+    test:validDataServiceBase ;
+        cv:hasCost "invalid cost" ;
+        .
+}
+
+testgraphs:cost-2 {
+    test:validDataServiceBase ;
+        cv:hasCost <http://example.com/not-available-should-fail> ; # should fail?
+        .
+}
+
+testgraphs:cost-3 {
+    test:validDataServiceBase ;
+        cv:hasCost [
+            # ... a cv:Cost mangler
+            dct:description "Behandlingsgebyr"@nb ;
+        ];
+        .
+}
+
+
+# ----- Identifier -----
+
+testgraphs:identifier-1 {
+    test:validDataServiceBase ;
+        dct:identifier [ a skos:Concept ; skos:prefLabel "an-invalid-identifier"; ];
+        .
+}
+
+
+testgraphs:identifier-2 {
+    test:validDataServiceBase ;
+        dct:identifier <http://example.com/an-invalid-identifier>;
+        .
+}
+
+
+# ----- Landing page -----
+
+testgraphs:landingPage-1 {
+    test:validDataServiceBase ;
+        foaf:page "http://example.com/invalid-type"^^xsd:anyURI; # invalid type
+        .
+}
+
+
+testgraphs:landingPage-2 {
+    test:validDataServiceBase ;
+        dct:identifier [  # invalid type
+        ] ;
+        .
+}
+
+
+# ----- License / CV License -----
+
+testgraphs:license-1 {
+    test:validDataServiceBase ;
+        dct:license "http://example.com/a-valid-identifier"^^xsd:anyURI; # invalid type
+        .
+}
+
+testgraphs:license-2 {
+    test:validDataServiceBase ;
+        dct:license <http://publications.europa.eu/resource/authority/licence/CC0>,
+            <http://publications.europa.eu/resource/authority/licence/APACHE_2_0>; # invalid, max 1 value
+        .
+}
+
+
+# ----- Rights -----
+
+testgraphs:rights-1 {
+    test:validDataServiceBase ;
+        dct:rights <http://example.com/a-rights-statement1>, <http://example.com/a-rights-statement2> ; # invalid, max 1 value
+        .
+
+    <http://example.com/a-rights-statement1> a odrs:RightsStatement .
+    <http://example.com/a-rights-statement2> a odrs:RightsStatement .
+}
+
+testgraphs:rights-2 {
+    test:validDataServiceBase ;
+        dct:rights "not a rights statement" ; # invalid type
+        .
+}
+
+
+# ----- Status / CV Distribution Status -----
+
+testgraphs:status-1 {
+    test:validDataServiceBase ;
+        adms:status "invalid status"; # invalid type
+        .
+}
+
+testgraphs:status-2 {
+    test:validDataServiceBase ;
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ,  # invalid, max 1 value
+                    <http://publications.europa.eu/resource/authority/distribution-status/DEPRECATED> ;
+        .
+}
+
+
+# ----- Access Rights / CV Access Rights -----
+
+testgraphs:accessRights-1 {
+    test:validDataServiceBase ;
+        dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>, <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ; # invalid, max 1 value
+        .
+}
+
+testgraphs:accessRights-2 {
+    test:validDataServiceBase ;
+        dct:accessRights "http://publications.europa.eu/resource/authority/access-right/PUBLIC"^^xsd:anyURI ; # invalid type
+        .
+}
+
+testgraphs:accessRights-3 {
+    test:validDataServiceBase ;
+        # Exists in Controlled Vocabulary, but should not be used according to DCAT-AP-NO
+        dct:accessRights <http://publications.europa.eu/resource/authority/access-right/CONFIDENTIAL> ;
+        .
+}
+
+# ----- Version -----
+
+testgraphs:version-1 {
+    test:validDataServiceBase ;
+        dcat:version <http://example.com/invalid-type> ; # invalid type
+        .
+}
+
+testgraphs:version-1 {
+    test:validDataServiceBase ;
+        dcat:version [] ; # invalid type
+        .
+}
+
+
+# ----- Version Notes -----
+
+testgraphs:versionNotes-1 {
+    test:validDataServiceBase ;
+        adms:versionNotes <http://example.com/invalid-type>;
+        .
+}
+
+testgraphs:versionNotes-2 {
+    test:validDataServiceBase ;
+        adms:versionNotes [ a skos:Concept ; skos:prefLabel "invalid version notes"@nb ];
+        .
+}

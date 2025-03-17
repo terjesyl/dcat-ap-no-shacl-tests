@@ -1,0 +1,300 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-dataservices/>
+PREFIX testgraphs: <http://example.com/test-graphs/invalid/data-services/>
+
+# ===== Testing invalid usage of controlled vocabularies on Data Service descriptions =====
+
+# ----- Theme / CV DataTheme -----
+
+testgraphs:dataTheme-1 {
+    test:validDataServiceBase
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/data-theme/GOVE> a skos:Concept ;
+        skos:notation "GOVE" ;
+        skos:prefLabel "Government"@en ;
+        # skos:inScheme intentionally missing;
+        .
+}
+
+testgraphs:dataTheme-2 {
+    test:validDataServiceBase
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+        # a skos:Concept intentionally missing
+        skos:notation "GOVE" ;
+        skos:prefLabel "Government"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/data-theme> ;
+        .
+}
+
+testgraphs:dataTheme-3 {
+    test:validDataServiceBase
+        dcat:theme <http://example.com/theme> ; # not a Data Theme
+        .
+}
+
+# ----- Format / CV filetype -----
+
+testgraphs:filetype-1 {
+    test:validDataServiceBase
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> a skos:Concept ;
+        skos:notation "RDF_TURTLE" ;
+        skos:prefLabel "RDF Turtle"@en ;
+        # skos:inScheme is intentionally missing
+        .
+}
+
+testgraphs:filetype-2 {
+    test:validDataServiceBase
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE>
+        # a skos:Concept is intentionally missing
+        skos:notation "RDF_TURTLE" ;
+        skos:prefLabel "RDF Turtle"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
+        .
+}
+
+testgraphs:filetype-3 {
+    test:validDataServiceBase
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDFTURTLE> ; # wrong URI
+        .
+
+    <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> a skos:Concept ;
+        skos:notation "RDF_TURTLE" ;
+        skos:prefLabel "RDF Turtle"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
+        .
+}
+
+testgraphs:filetype-4 {
+    # Blank nodes on dct:format not permitted
+    test:validDataServiceBase
+        dct:format [
+            a skos:Concept ;
+            skos:notation "RDF_TURTLE" ;
+            skos:prefLabel "RDF Turtle"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
+        ] ;
+        .
+}
+
+testgraphs:filetype-5 {
+    test:validDataServiceBase
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ,
+                   <http://example.com/formats/other-format> ;  # Not from File Type Controlled Vocabulary, not allowed
+        .
+
+    <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> a skos:Concept ;
+        skos:notation "RDF_TURTLE" ;
+        skos:prefLabel "RDF Turtle"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
+        .
+
+    <http://example.com/formats/other-format> a skos:Concept ;
+        skos:notation "OTHER_FORMAT" ;
+        skos:prefLabel "Other Format"@en ;
+        skos:inScheme <http://example.com/formats> ;
+}
+
+# ----- Availability / CV Planned Availability -----
+
+testgraphs:plannedAvailability-1 {
+    test:validDataServiceBase
+        dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/STABLE> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/planned-availability/STABLE> a skos:Concept ;
+        skos:notation "STABLE" ;
+        skos:prefLabel "Stable"@en ;
+        # skos:inScheme is intentionally missing
+}
+
+testgraphs:plannedAvailability-2 {
+    test:validDataServiceBase
+        dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/STABLE> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/planned-availability/STABLE>
+        # a skos:Concept intentionally missing
+        skos:notation "STABLE" ;
+        skos:prefLabel "Stable"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/planned-availability> ;
+        .
+}
+
+testgraphs:plannedAvailability-3 {
+    test:validDataServiceBase
+        dcatap:availability <http://example.com/not-an-eu-controlled-vocabulary/CODE> ;
+        .
+
+    <http://example.com/not-an-eu-controlled-vocabulary/CODE> a skos:Concept ;
+        skos:notation "CODE" ;
+        skos:prefLabel "Code"@en ;
+        skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> ;
+        .
+}
+
+
+# ----- License / CV License -----
+
+
+testgraphs:license-1 {
+    test:validDataServiceBase
+        dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> a skos:Concept ;
+        skos:notation "APACHE_2_0" ;
+        skos:prefLabel "Apache 2.0"@en ;
+        # skos:inScheme intentionally missing
+        .
+}
+
+
+testgraphs:license-2 {
+    test:validDataServiceBase
+        dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/licence/APACHE_2_0>
+        # a skos:Concept intentionally missing
+        skos:notation "APACHE_2_0" ;
+        skos:prefLabel "Apache 2.0"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/licence> ;
+        .
+}
+
+testgraphs:license-3 {
+    test:validDataServiceBase
+        dct:license <http://example.com/not-an-eu-controlled-vocabulary/CODE> ;
+        .
+
+    <http://example.com/not-an-eu-controlled-vocabulary/CODE> a skos:Concept ;
+        skos:notation "CODE" ;
+        skos:prefLabel "Code"@en ;
+        skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> ;
+        .
+}
+
+
+
+# ----- Status / CV Distribution Status -----
+
+testgraphs:status-1 {
+    test:validDataServiceBase
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED>
+        # ... a skos:Concept intentionally missing
+        skos:notation "COMPLETED" ;
+        skos:prefLabel "Completed"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
+        .
+}
+
+
+testgraphs:status-2 {
+    test:validDataServiceBase
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> a skos:Concept ;
+        skos:notation "COMPLETED" ;
+        skos:prefLabel "Completed"@en ;
+        # ... skos:inScheme intentionally missing
+        .
+}
+
+testgraphs:status-3 {
+    test:validDataServiceBase
+        adms:status <http://example.com/not-an-eu-controlled-vocabulary/CODE> ;
+        .
+
+    <http://example.com/not-an-eu-controlled-vocabulary/CODE> a skos:Concept ;
+        skos:notation "CODE" ;
+        skos:prefLabel "Code"@en ;
+        skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> ;
+        .
+}
+
+
+
+# ----- Access Rights / CV Access Rights -----
+
+testgraphs:accessRights-1 {
+    test:validDataServiceBase
+        dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/access-right/PUBLIC>
+        # ... a skos:Concept intentionally missing
+        skos:notation "PUBLIC" ;
+        skos:prefLabel "public"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/access-right> ;
+        .
+}
+
+
+testgraphs:accessRights-2 {
+    test:validDataServiceBase
+        dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/access-right/PUBLIC> a skos:Concept ;
+        skos:notation "PUBLIC" ;
+        skos:prefLabel "public"@en ;
+        # ... skos:inScheme intentionally missing
+        .
+}
+
+
+testgraphs:accessRights-3 {
+    test:validDataServiceBase
+        dct:accessRights <http://example.com/not-an-eu-controlled-vocabulary/CODE> ;
+        .
+
+    <http://example.com/not-an-eu-controlled-vocabulary/CODE> a skos:Concept ;
+        skos:notation "CODE" ;
+        skos:prefLabel "Code"@en ;
+        skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> ;
+        .
+}

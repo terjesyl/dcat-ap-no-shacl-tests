@@ -1,0 +1,279 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-dataservices/>
+PREFIX testgraphs: <https://example.com/test-graphs/valid/data-services/>
+
+# ===== Testing valid Data Service descriptions =====
+
+
+# Mandatory properties
+# Endpoint URL, contact point, title, publisher, 
+
+testgraphs:all-mandatory-properties-1 {
+    test:validDataServiceBase a dcat:DataService . # From valid base description
+}
+
+
+# Recommended and Optional properties
+
+
+# ----- Keyword -----
+
+testgraphs:keyword-1 {
+    test:validDataServiceBase ;
+        dcat:keyword "keyword1"@en, "nøkkelord1"@nn;
+        .
+}
+
+
+# ----- Endpoint Description -----
+
+testgraphs:endpointDescription-1 {
+    test:validDataServiceBase ;
+        dcat:endpointDescription <https://example.com/openapi/>, <https://example.com/hydra-spec/>;
+        .
+}
+
+
+# ----- Format / CV File Type -----
+
+testgraphs:format-1 {
+    test:validDataServiceBase
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ;
+        .
+}
+
+
+testgraphs:format-2 {
+    test:validDataServiceBase
+        dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ;
+        .
+}
+
+
+# ----- Applicable Legislation -----
+
+testgraphs:endpointDescription-1 {
+    test:validDataServiceBase ;
+        dcatap:applicableLegislation <https://lovdata.no/eli/forskrift/2016/12/15/1600>, <https://lovdata.no/eli/lov/2024/12/20/88> ;
+        .
+}
+
+
+# ----- Conforms To -----
+
+testgraphs:conformsTo-1 {
+    test:validDataServiceBase ;
+        dct:conformsTo <https://www.w3.org/TR/sparql11-protocol/>, <https://www.wikidata.org/wiki/Q2063> ;
+        .
+}
+
+
+# ----- Theme -----
+
+testgraphs:theme-1 {
+    test:validDataServiceBase ;
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+        .
+}
+
+testgraphs:theme-2 {
+    test:validDataServiceBase ;
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>, # at least 1 from Data Theme
+                   <http://example.com/another-theme> ; # another theme not from Data Theme vocabulary
+        .
+}
+
+
+# ----- Serves Dataset -----
+
+testgraphs:servesDataset-1 {
+    test:validDataServiceBase ;
+        dcat:servesDataset <http://example.com/datasets/dataset1>, <http://example.com/datasets/dataset2> ;
+        .
+}
+
+
+# ----- Availability / CV Planned Availability -----
+
+testgraphs:availability-1 {
+    test:validDataServiceBase ;
+        dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/STABLE>;
+        .
+}
+
+
+# ----- Description -----
+
+testgraphs:description-1 {
+    test:validDataServiceBase ;
+        dct:description "Valid description"@en, "Gyldig beskriving"@nn; # invalid type
+        .
+}
+
+
+# ----- Page -----
+
+testgraphs:page-1 {
+    test:validDataServiceBase ;
+        foaf:page <http://example.com/example>;
+        .
+}
+
+
+# ----- Cost -----
+
+testgraphs:cost-1 {
+    test:validDataServiceBase ;
+        cv:hasCost [
+            a cv:Cost ;
+        ],
+        [
+            a cv:Cost ;
+        ]  ;
+        .
+}
+
+testgraphs:cost-2 {
+    test:validDataServiceBase ;
+        cv:hasCost <http://example.com/cost> ;
+        .
+
+    <http://example.com/cost> a cv:Cost ;
+        .
+}
+
+testgraphs:cost-3 {
+    test:validDataServiceBase ;
+        cv:hasCost [
+            a cv:Cost ;
+            foaf:page <http://example.com/cost-description> ;
+        ];
+        .
+}
+
+
+# ----- Identifier -----
+
+testgraphs:identifier-1 {
+    test:validDataServiceBase ;
+        dct:identifier "a-valid-identifier", "123456789"^^xsd:double ;
+        .
+}
+
+
+testgraphs:identifier-2 {
+    test:validDataServiceBase ;
+        dct:identifier "http://example.com/a-valid-identifier"^^xsd:anyURI;
+        .
+}
+
+# ----- Landing page -----
+
+testgraphs:landingPage-1 {
+    test:validDataServiceBase ;
+        foaf:page <http://example.com/landing-page1>, <http://example.com/landing-page2> ;
+        .
+}
+
+
+# ----- License / CV License -----
+
+testgraphs:license-1 {
+    test:validDataServiceBase ;
+        dct:license <http://publications.europa.eu/resource/authority/licence/CC0> ;
+        .
+}
+
+
+# ----- Rights -----
+
+testgraphs:rights-1 {
+    test:validDataServiceBase ;
+        dct:rights <http://example.com/a-rights-statement> ;
+        .
+
+    <http://example.com/a-rights-statement> a odrs:RightsStatement ;
+        odrs:reuserGuidelines <https://example.org/aRightsStatement> ;
+    .
+}
+
+
+testgraphs:rights-2 {
+    test:validDataServiceBase ;
+        dct:rights [ a odrs:RightsStatement ] ;
+        .
+}
+
+
+# ----- Status / CV Distribution Status -----
+
+
+testgraphs:status-1 {
+    test:validDataServiceBase ;
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
+        .
+}
+
+
+# ----- Access Rights / CV Access Rights -----
+
+
+testgraphs:accessRights-1 {
+    test:validDataServiceBase ;
+        dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+        .
+}
+
+
+# ----- Version -----
+
+
+testgraphs:version-1 {
+    test:validDataServiceBase ;
+        dcat:version "versjon 3" ;
+        .
+}
+
+
+testgraphs:version-2 {
+    test:validDataServiceBase ;
+        dcat:version "versjon 1"@nb, "version 1", "1"^^xsd:integer ;
+        .
+}
+
+
+# ----- Version Notes -----
+
+testgraphs:versionNotes-1 {
+    test:validDataServiceBase ;
+        adms:versionNotes "Merknad om versjon"@nb, "Note on version"@en;
+        .
+}

@@ -1,0 +1,201 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-distributions/>
+PREFIX testgraphs: <https://example.com/test-graphs/valid/distribution/>
+
+# ===== Testing valid Distribution descriptions =====
+
+
+# Mandatory properties:
+
+testgraphs:all-mandatory-properties-1 {
+    test:validDistributionBase a dcat:Distribution . # From valid base description
+}
+
+# ----- Access URL -----
+
+testgraphs:accessURL-1 {
+    <http://example.com/distribution> a dcat:Distribution ;
+        dcat:accessURL  <http://example.com/access-1> ,
+                        <http://example.com/access-2> ,
+                        <http://example.com/access-2> ;
+}
+
+# Recommended and Optional properties
+
+
+# ----- Description -----
+
+testgraphs:description-1 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:description "English description"@en, "Bokmålsbeskrivelse"@nb .
+}
+
+
+# ----- Format / CV File Type -----
+
+testgraphs:format-1 {
+    test:validDistributionBase a dcat:Distribution ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> .
+}
+
+
+# ----- License / CV License -----
+
+testgraphs:license-1 {
+    test:validDistributionBase ;
+        dct:license <http://publications.europa.eu/resource/authority/licence/CC0> .
+}
+
+# ----- Status / CV Distribution Status -----
+
+testgraphs:status-1 {
+    test:validDistributionBase ;
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> .
+}
+
+
+# ----- Availability / CV Planned Availability -----
+
+testgraphs:status-1 {
+    test:validDistributionBase ;
+        dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/EXPERIMENTAL> .
+}
+
+
+# ----- Page -----
+
+testgraphs:page-1 {
+    test:validDistributionBase ;
+        foaf:page <http://example.com/info-page-1>, <http://example.com/info-page-2> .
+}
+
+
+# ----- Modified -----
+
+testgraphs:modified-1 {
+    test:validDistributionBase ;
+        dct:modified "2025-01-01"^^xsd:date .
+}
+
+testgraphs:modified-2 {
+    test:validDistributionBase ;
+        dct:modified "2025-01-01T12:00:00"^^xsd:dateTime .
+}
+
+
+# ----- Byte Size -----
+
+testgraphs:byteSize-1 {
+    test:validDistributionBase ;
+        dcat:byteSize "2048"^^xsd:nonNegativeInteger .
+}
+
+
+# ----- Applicable Legislation -----
+
+testgraphs:applicableLegislation-1 {
+    test:validDistributionBase ;
+        dcatap:applicableLegislation  <https://example.com/legislation1>,
+                                      <https://example.com/legislation2> .
+}
+
+# ----- Conforms To -----
+
+testgraphs:conformsTo-1 {
+    test:validDistributionBase ;
+        dct:conformsTo <http://example.com/data-model-1>, <http://example.com/data-model-2> .
+}
+
+
+# ----- Compress Format / CV File Type (?) -----
+
+testgraphs:compressFormat-1 {
+    test:validDistributionBase ;
+        dcat:compressFormat <https://www.w3.org/ns/iana/media-types/application/zip> .
+}
+
+# ----- Media Type / Namespace IANA -----
+
+testgraphs:mediaType-1 {
+    test:validDistributionBase ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/xml> .
+}
+
+
+# ----- DownloadURL -----
+
+testgraphs:downloadURL-1 {
+    test:validDistributionBase ;
+        dcat:downloadURL <https://example.com/first-access-to-file>, <https://example.com/second-access-to-file> .
+}
+
+
+# ----- Package Format / CV File Type (?) -----
+
+testgraphs:packageFormat-1 {
+    test:validDistributionBase ;
+        dcat:packageFormat <https://www.w3.org/ns/iana/media-types/application/gzip> .
+}
+
+
+# ----- Has Policy -----
+
+testgraphs:hasPolicy-1 {
+    test:validDistributionBase ;
+        odrl:hasPolicy <https://example.com/policy> .
+
+    <https://example.com/policy> a odrl:Policy ;
+}
+
+
+# ----- Rights -----
+
+
+# ----- Spatial Resolution In Meters -----
+
+
+# ----- Checksum -----
+
+
+# ----- Language / CV Language -----
+
+
+# ----- Temporal Resolution -----
+
+
+# ----- Access Service -----
+
+
+# ----- Title -----
+
+
+# ----- Issued -----
+
