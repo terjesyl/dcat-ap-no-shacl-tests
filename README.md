@@ -61,6 +61,11 @@ ikke spec-compliant, skal være `sh:nodeKind sh:Literal;`
 
 Fiks sjekk, krever nå `a dct:LicenseDocument` ...
 
+### conforms To
+
+Skal peke til instanser av dct:Standard
+
+
 ### adms:status / CV Distribution Status
 
 Fix typesjekk, krever `a skos:Concept` nå
@@ -96,6 +101,23 @@ Hvordan håndtere RECOMMENDED/OPTIONAL LEAST 1 (gjelder dcat:theme på DataServi
 
 Hvem skal reglene være for? Internt i data.norge.no? For datatilbyder/leverandør?
 
+### Instanser vi antar følger med fil (?)
+
+og skal vi tillate blanke noder på disse?
+
+- cv:Cost (cv:hasCost)
+- odrs:RightsStatement (dct:rights)
+- odrl:Policy (odrl:hasPolicy)
+- spdx:Checksum (spdx:checksum)
+
+Hva med:
+- adms:Identifier (?)
+- dct:Standard (?)
+- dct:PeriodOfTime
+- dcat:DataService (dcat:accessService)
+- dcat:Dataset (dcat:servesDataset)
+
+
 ### Class/Range restrictions
 class/range restrictions (ex: dcatap:applicableLegislation)
 
@@ -103,14 +125,6 @@ Legge til pattern (for å matche ELI). Hvordan?
 
 Lage "advanced"-regelsett (sjekk av URL-patterns etc.) gi Warnings.
 
-### cv:Cost
-
-Anta at ligger i fil, eller akseptere URI-er/referanser til eksterne ressurser?
-
-### Rights Statement
-
-Anta at følger med fil?
-Tillate blanke noder?
 
 ### Hvilke er LEAST 1, hvilke er MUST (closed range)
 

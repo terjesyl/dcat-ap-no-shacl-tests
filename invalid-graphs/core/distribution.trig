@@ -207,7 +207,7 @@ testgraphs:conformsTo-2 {
 }
 
 
-# ----- Compress Format / CV File Type (?) -----
+# ----- Compress Format / IANA Media Type -----
 
 testgraphs:compressFormat-1 {
     test:validDistributionBase ;
@@ -223,6 +223,11 @@ testgraphs:compressFormat-2 {
 testgraphs:compressFormat-3 {
     test:validDistributionBase ;
         dcat:compressFormat [ a dct:MediaType ] .  # wrong type
+}
+
+testgraphs:compressFormat-4 {
+    test:validDistributionBase ;
+        dcat:compressFormat <http://example.com/gzip> . # not from IANA Media Types 
 }
 
 
@@ -265,7 +270,7 @@ testgraphs:downloadURL-2 {
 }
 
 
-# ----- Package Format / CV File Type (?) -----
+# ----- Package Format / IANA Media Types -----
 
 testgraphs:packageFormat-1 {
     test:validDistributionBase ;
@@ -281,6 +286,11 @@ testgraphs:compressFormat-2 {
 testgraphs:compressFormat-3 {
     test:validDistributionBase ;
         dcat:packageFormat [ a dct:MediaType ] .  # wrong type
+}
+
+testgraphs:packageFormat-4 {
+    test:validDistributionBase ;
+        dcat:packageFormat <http://example.com/zip> . # not from IANA Media Types 
 }
 
 
@@ -304,24 +314,133 @@ testgraphs:hasPolicy-3 {
 
 # ----- Rights -----
 
+testgraphs:rights-1 {
+    test:validDistributionBase ;
+        dct:rights <http://example.com/a-rights-statement1>, <http://example.com/a-rights-statement2> ; # invalid, max 1 value
+        .
+
+    <http://example.com/a-rights-statement1> a odrs:RightsStatement .
+    <http://example.com/a-rights-statement2> a odrs:RightsStatement .
+}
+
+testgraphs:rights-2 {
+    test:validDistributionBase ;
+        dct:rights "not a rights statement" ; # invalid type
+        .
+}
+
 
 # ----- Spatial Resolution In Meters -----
+
+testgraphs:spatialResolutionInMeters-1 {
+    test:validDistributionBase ;
+        dcat:spatialResolutionInMeters <http://example.com/10-meters> . # wrong type
+}
+
+testgraphs:spatialResolutionInMeters-2 {
+    test:validDistributionBase ;
+        dcat:spatialResolutionInMeters [ a rdfs:Resource ] . # wrong type
+}
+
+testgraphs:spatialResolutionInMeters-3 {
+    test:validDistributionBase ;
+        dcat:spatialResolutionInMeters "10"^^xsd:decimal, "15"^^xsd:decimal . # too many values
+}
 
 
 # ----- Checksum -----
 
+testgraphs:checksum-1 {
+    test:validDistributionBase ;
+        spdx:checksum "10"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:checksum-2 {
+    test:validDistributionBase ;
+        spdx:checksum <http://example.com/checksum> .  # missing checksum resource
+}
+
 
 # ----- Language / CV Language -----
 
+testgraphs:language-1 {
+    test:validDistributionBase ;
+        dct:language "norwegian" .
+}
 
-# ----- Temporal Resolution -----
+testgraphs:language-2 {
+    test:validDistributionBase ;
+        dct:language <http://example.com/norwegian> .
+}
+
+testgraphs:language-3 {
+    test:validDistributionBase ;
+        dct:language [ a dct:LinguisticSystem ] .
+}
+
+# ----- Temporal Resolution -----p
+
+testgraphs:temporalResolution-1 {
+    test:validDistributionBase ;
+        dcat:temporalResolution <http://example.com/a-week> . # wrong type
+}
+
+testgraphs:temporalResolution-2 {
+    test:validDistributionBase ;
+        dcat:temporalResolution [ a rdfs:Resource ] . # wrong type
+}
+
+testgraphs:temporalResolution-3 {
+    test:validDistributionBase ;
+        dcat:temporalResolution "P5Y2M10D"^^xsd:duration, "P5Y"^^xsd:duration . # too many values
+}
 
 
 # ----- Access Service -----
 
+testgraphs:accessService-1 {
+    test:validDistributionBase ;
+        dcat:accessService [ a rdfs:Resource ] . # blank nodes not allowed
+}
+
+testgraphs:accessService-2 {
+    test:validDistributionBase ;
+        dcat:accessService "http//example.com/data-service"^^xsd:anyURI . # wrong type
+}
+
 
 # ----- Title -----
+
+testgraphs:title-1 {
+    test:validDistributionBase ;
+        dct:title "Bokmålstittel 1"@nb, "Bokmålstittel 2"@nb . # too many values in same language
+}
+
+testgraphs:title-2 {
+    test:validDistributionBase ;
+        dct:title [ a rdfs:Resource ] . # wrong type
+}
+
+testgraphs:title-3 {
+    test:validDistributionBase ;
+        dct:title <http://example.com/a-title> . # wrong type
+}
 
 
 # ----- Issued -----
 
+
+testgraphs:issued-1 {
+    test:validDistributionBase ;
+        dct:issued "2025-01-01"^^xsd:date, "2025-01-01T00:00:00"^^xsd:dateTime . # too many values
+}
+
+testgraphs:issued-2 {
+    test:validDistributionBase ;
+        dct:issued <http://example.com/2025-01-01> . # wrong type
+}
+
+testgraphs:issued-3 {
+    test:validDistributionBase ;
+        dct:issued [ a rdfs:Resource ] . # wrong type
+}

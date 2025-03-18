@@ -94,13 +94,16 @@ testgraphs:plannedAvailability-1 {
 }
 
 
-# ----- Compress Format / CV File Type -----
-
-
-# ----- Media Type / Namespace IANA -----
-
-
-# ----- Package Format / CV File Type -----
-
-
 # ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validDistributionBase
+        dct:language <http://publications.europa.eu/resource/authority/language/NOR> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/language/NOR> a skos:Concept ;
+        skos:notation "NOR" ;
+        skos:prefLabel "Norwegian"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/language> ;
+        .
+}

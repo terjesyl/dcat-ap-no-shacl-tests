@@ -134,6 +134,7 @@ testgraphs:filetype-5 {
         skos:inScheme <http://example.com/formats> ;
 }
 
+
 # ----- Availability / CV Planned Availability -----
 
 testgraphs:plannedAvailability-1 {
@@ -175,7 +176,6 @@ testgraphs:plannedAvailability-3 {
 
 # ----- License / CV License -----
 
-
 testgraphs:license-1 {
     test:validDataServiceBase
         dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
@@ -187,7 +187,6 @@ testgraphs:license-1 {
         # skos:inScheme intentionally missing
         .
 }
-
 
 testgraphs:license-2 {
     test:validDataServiceBase
@@ -215,7 +214,6 @@ testgraphs:license-3 {
 }
 
 
-
 # ----- Status / CV Distribution Status -----
 
 testgraphs:status-1 {
@@ -230,7 +228,6 @@ testgraphs:status-1 {
         skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
         .
 }
-
 
 testgraphs:status-2 {
     test:validDataServiceBase
@@ -257,7 +254,6 @@ testgraphs:status-3 {
 }
 
 
-
 # ----- Access Rights / CV Access Rights -----
 
 testgraphs:accessRights-1 {
@@ -273,7 +269,6 @@ testgraphs:accessRights-1 {
         .
 }
 
-
 testgraphs:accessRights-2 {
     test:validDataServiceBase
         dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
@@ -285,7 +280,6 @@ testgraphs:accessRights-2 {
         # ... skos:inScheme intentionally missing
         .
 }
-
 
 testgraphs:accessRights-3 {
     test:validDataServiceBase

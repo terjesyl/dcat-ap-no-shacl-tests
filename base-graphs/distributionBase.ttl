@@ -42,7 +42,6 @@ test:validCatalogBase a dcat:Catalog ;
     .
 
 test:validDistributionBase a dcat:Distribution ;
-    dct:title "Base Distribution"@en ;
     dcat:accessURL <http://example.com/access-page> .
 
 # -------------------------------------------------

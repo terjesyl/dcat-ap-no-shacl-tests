@@ -178,24 +178,97 @@ testgraphs:hasPolicy-1 {
 
 # ----- Rights -----
 
+testgraphs:rights-1 {
+    test:validDistributionBase ;
+        dct:rights <http://example.com/a-rights-statement> .
+
+    <http://example.com/a-rights-statement> a odrs:RightsStatement ;
+        odrs:reuserGuidelines <https://example.org/aRightsStatement> .
+}
+
+
+testgraphs:rights-2 {
+    test:validDistributionBase ;
+        dct:rights [ a odrs:RightsStatement ] .
+}
+
 
 # ----- Spatial Resolution In Meters -----
+
+testgraphs:spatialResolutionInMeters-1 {
+    test:validDistributionBase ;
+        dcat:spatialResolutionInMeters "10"^^xsd:decimal .
+}
 
 
 # ----- Checksum -----
 
+testgraphs:checksum-1 {
+    test:validDistributionBase ;
+        spdx:checksum [
+            a spdx:Checksum ;
+            spdx:algorithm <http://spdx.org/rdf/terms#checksumAlgorithm_sha1> ;
+            spdx:checksumValue "30a4985fd07730d5876254998e8808d5836629394cc43b15ad6beee1dce1995b"^^xsd:hexBinary ;
+        ] .
+}
+
+testgraphs:checksum-2 {
+    test:validDistributionBase ;
+        spdx:checksum <http://example.com/checksum> .
+
+    <http://example.com/checksum> a spdx:Checksum ;
+        spdx:algorithm <http://spdx.org/rdf/terms#checksumAlgorithm_sha1> ;
+        spdx:checksumValue "30a4985fd07730d5876254998e8808d5836629394cc43b15ad6beee1dce1995b"^^xsd:hexBinary .
+}
+
 
 # ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validDistributionBase ;
+        dct:language  <http://publications.europa.eu/resource/authority/language/NOR> ,
+                      <http://publications.europa.eu/resource/authority/language/ENG> .
+}
 
 
 # ----- Temporal Resolution -----
 
+testgraphs:temporalResolution-1 {
+    test:validDistributionBase ;
+        dcat:temporalResolution "P5Y2M10D"^^xsd:duration .
+}
+
 
 # ----- Access Service -----
+
+testgraphs:accessService-1 {
+    test:validDistributionBase ;
+        dcat:accessService <http//example.com/data-service>, <http//example.com/another-data-service> .
+}
 
 
 # ----- Title -----
 
+testgraphs:title-1 {
+    test:validDistributionBase ;
+        dct:title "Bokmålstittel 1"@nb, "Nynorsktittel"@nn, "English title"@en .
+}
+
+
+testgraphs:title-2 {
+    test:validDistributionBase ;
+        dct:title "Bokmålstittel 1"@nb .
+}
+
 
 # ----- Issued -----
 
+testgraphs:issued-1 {
+    test:validDistributionBase ;
+        dct:issued "2025-01-01"^^xsd:date .
+}
+
+testgraphs:issued-2 {
+    test:validDistributionBase ;
+        dct:issued "2025-01-01T00:00:00"^^xsd:dateTime .
+}
