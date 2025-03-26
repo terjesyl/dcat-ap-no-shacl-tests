@@ -28,7 +28,7 @@ PREFIX cv: <http://data.europa.eu/m8g/>
 PREFIX dqv: <http://www.w3.org/ns/dqv#>
 
 PREFIX test: <http://example.com/test-distributions/>
-PREFIX testgraphs: <https://example.com/test-graphs/invalid/distribution/>
+PREFIX testgraphs: <http://example.com/test-graphs/invalid/controlled-vocs/distribution/>
 
 
 # ===== Testing invalid usage of Controlled Vocabularies on Distribution descriptions =====

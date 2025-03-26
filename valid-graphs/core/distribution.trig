@@ -28,7 +28,7 @@ PREFIX cv: <http://data.europa.eu/m8g/>
 PREFIX dqv: <http://www.w3.org/ns/dqv#>
 
 PREFIX test: <http://example.com/test-distributions/>
-PREFIX testgraphs: <https://example.com/test-graphs/valid/distribution/>
+PREFIX testgraphs: <http://example.com/test-graphs/valid/distribution/>
 
 # ===== Testing valid Distribution descriptions =====
 

@@ -28,7 +28,7 @@ PREFIX cv: <http://data.europa.eu/m8g/>
 PREFIX dqv: <http://www.w3.org/ns/dqv#>
 
 PREFIX test: <http://example.com/test-dataservices/>
-PREFIX testgraphs: <http://example.com/test-graphs/invalid/data-services/>
+PREFIX testgraphs: <http://example.com/test-graphs/invalid/controlled-vocs/data-services/>
 
 # ===== Testing invalid usage of controlled vocabularies on Data Service descriptions =====
 

@@ -15,6 +15,8 @@ For eksempel `hasNodeKindIRIShape-dcatTheme`
 
 Definere at egenskap skal gjentas kun én gang per språk med `sh:uniqueLang`
 
+Omformulere feilmelding til "There MUST be max. 1 value per language."
+
 ### Contact Point
 
 Sjekke at typene til instanser av contactPoint er disjunkte (disjoint) (hvordan?)
@@ -28,7 +30,10 @@ Ligger dette utenfor scope?
 Gjør LEAST 1-sjekk (avhengig av SEMICs avgjørelse).
 Fiks maxCount 1 feil.
 
-For datasett, bør liste opp alle verdiene.
+Hvis en URI matcher på data-theme-URI: sjekk inScheme.
+
+For datasett, bør liste opp alle verdiene:
+vis match på pattern, så MÅ verdien matche de listede hardkodede verdiene fra Data Theme.
 
 ### cv:hasCost
 
@@ -49,6 +54,15 @@ Implementere sjekk på
   .
 ```
 
+### dct:subject
+
+Tillate blanke noder?
+
+### prov:wasGeneratedBy
+
+Tillate blanke noder?
+INFO om ikke fra Activity Type?
+
 ### dct:identifier (!)
 
 `:hasMin0MaxNShape-dctIdentifier`:
@@ -56,6 +70,7 @@ Implementere sjekk på
 har `sh:nodeKind sh:IRIOrLiteral;`
 
 ikke spec-compliant, skal være `sh:nodeKind sh:Literal;`
+
 
 ### dct:license
 
@@ -79,6 +94,12 @@ Fiks typesjekk, `a skos:Concept`, hardkode verdiene (?)
 Avklare: Regex-sjekk på URI?
 Gjøre som Warning
 
+### spdx:checksum
+
+TODO: fix: Kan velge flere algoritmer
+
+------------------------------------------------------------------------------------------------
+
 ## Kontrollerte vokabular
 
 Skriv `sh:message` i vocabularies.shapes.ttl til engelsk fra norsk.
@@ -92,6 +113,15 @@ Avklare: bruke IANA Media Type eller EUs File Type?
 
 Sjekk Pattern på Package Format. Gi Warning.
 Avklare: bruke IANA Media Type eller EUs File Type?
+
+------------------------------------------------------------------------------------------------
+
+## Datasett
+
+Ordne kontrollerte vokabular:
+- Spatial
+- ...
+
 
 ------------------------------------------------------------------------------------------------
 
@@ -132,19 +162,28 @@ Forslag (basert på SEMICs forslag):
 
 ### LEAST 1
 
-| Egenskap   | SEMICs forslag (hvis tomt = likt) |
-| ---------- | --------------------------------- |
-| dcat:theme |                                   |
-
-### Optional
-
-### Recommended
-
-??
+dcat:theme
 
 ### MUST (closed range)
 
 Alle andre kontrollerte vokabularer
+
+
+### Formulering av sh:message i Type-sjekk
+
+"URI" eller "IRI"?
+
+"The value of \[property\] MUST be an \[IRI/URI\]"
+Denne formuleringen brukes i [SHACL](https://www.w3.org/TR/shacl/#NodeKindConstraintComponent):
+"all values of ex:knows need to be IRIs"
+
+"The value of \[property\] MUST be an \[IRI/URI\] or a Blank Node or a Literal"
+
+"The property \[property\] MUST refer to an \[IRI/URI\]"
+
+"The property \[property\] MUST be an \[IRI/URI\]"
+
+
 
 ------------------------------------------------------------------------------------------------
 
@@ -154,19 +193,17 @@ Alle andre kontrollerte vokabularer
 
 Enkelte Shapes har feil navn/name.
 
-### Bruk av rdfs:label
-Bytte ut rdfs:label med sh:name på NodeShapene det gjelder (mange)
-
 ### Feilmeldinger
 Gå gjennom alle feilmeldinger og omformuler.
 
-### LEAST 1 vs. MUST (closed range)
-Må gå gjennom alle regler og sjekke at OR-constraint er riktig for LEAST 1 (HVIS brukes, SÅ MÅ shape validere).
 
-| Klasse      | Egenskap      | Fikset |
-| ----------- | ------------- | ------ |
-| DataService | theme?        |        |
-| DataService | availability? |        |
+------------------------------------------------------------------------------------------------
+## Avklaringer Standard
+
+Tydeliggjøre forskjellen dcat:hasVersion og dcat:version
+For dcat:version: er dette versjonen for datasettet, eller beskrivelsen?
+
+------------------------------------------------------------------------------------------------
 
 ### Forslag:
 

@@ -28,7 +28,7 @@ PREFIX cv: <http://data.europa.eu/m8g/>
 PREFIX dqv: <http://www.w3.org/ns/dqv#>
 
 PREFIX test: <http://example.com/test-dataservices/>
-PREFIX testgraphs: <https://example.com/test-graphs/valid/data-services/>
+PREFIX testgraphs: <http://example.com/test-graphs/valid/data-services/>
 
 # ===== Testing valid Data Service descriptions =====
 
@@ -152,12 +152,8 @@ testgraphs:page-1 {
 
 testgraphs:cost-1 {
     test:validDataServiceBase ;
-        cv:hasCost [
-            a cv:Cost ;
-        ],
-        [
-            a cv:Cost ;
-        ]  ;
+        cv:hasCost  [ a cv:Cost ] ,
+                    [ a cv:Cost ] ;
         .
 }
 
