@@ -231,7 +231,6 @@ testgraphs:rights-2 {
 
 # ----- Status / CV Distribution Status -----
 
-
 testgraphs:status-1 {
     test:validDataServiceBase ;
         adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
@@ -240,7 +239,6 @@ testgraphs:status-1 {
 
 
 # ----- Access Rights / CV Access Rights -----
-
 
 testgraphs:accessRights-1 {
     test:validDataServiceBase ;
@@ -251,13 +249,11 @@ testgraphs:accessRights-1 {
 
 # ----- Version -----
 
-
 testgraphs:version-1 {
     test:validDataServiceBase ;
         dcat:version "versjon 3" ;
         .
 }
-
 
 testgraphs:version-2 {
     test:validDataServiceBase ;

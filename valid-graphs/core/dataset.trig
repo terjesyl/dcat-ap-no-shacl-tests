@@ -62,7 +62,8 @@ testgraphs:contactPoint-1 { # several contact points (in addition to the one in 
 testgraphs:theme-1 {
     test:validDatasetBase
         # several themes not from CV Data Theme, in addition to Data Theme GOVE already part of test:validDatasetBase
-        dcat:theme <http://psi.norge.no/los/tema/apenhet>, <https://wikidata.org/wiki/Q369577> .
+        dcat:theme <http://psi.norge.no/los/tema/apenhet> ,
+                   <https://wikidata.org/wiki/Q369577> .
 }
 
 
@@ -72,7 +73,8 @@ testgraphs:theme-1 {
 
 testgraphs:concept-1 {
     test:validDatasetBase
-        dct:subject <http://example.com/begrep1>, <http://example.com/begrep2> .
+        dct:subject <http://example.com/begrep1> ,
+                    <http://example.com/begrep2> .
 }
 
 testgraphs:concept-2 {
@@ -85,7 +87,7 @@ testgraphs:concept-2 {
 
 testgraphs:wasGeneratedBy-1 {
     test:validDatasetBase
-        prov:wasGeneratedBy <https://data.norge.no/vocabulary/provenance-activity-type#administrative-decision>,
+        prov:wasGeneratedBy <https://data.norge.no/vocabulary/provenance-activity-type#administrative-decision> ,
                             <https://data.norge.no/vocabulary/provenance-activity-type#collecting-from-third-party> .
 }
 
@@ -93,7 +95,8 @@ testgraphs:wasGeneratedBy-1 {
 
 testgraphs:distribution-1 {
     test:validDatasetBase
-        dcat:distribution <http://example.com/distribution1>, <http://example.com/distribution2> .
+        dcat:distribution <http://example.com/distribution1> ,
+                          <http://example.com/distribution2> .
 }
 
 testgraphs:distribution-2 {
@@ -120,7 +123,8 @@ testgraphs:keyword-1 {
 
 testgraphs:applicableLegislation-1 {
     test:validDatasetBase
-        dcatap:applicableLegislation <https://lovdata.no/eli/forskrift/2016/12/15/1600>, <https://lovdata.no/eli/lov/2024/12/13/77> .
+        dcatap:applicableLegislation <https://lovdata.no/eli/forskrift/2016/12/15/1600> ,
+                                     <https://lovdata.no/eli/lov/2024/12/13/77> .
 }
 
 
@@ -255,71 +259,225 @@ testgraphs:modified-2 {
 
 testgraphs:isReferencedBy-1 {
     test:validDatasetBase
-        dct:isReferencedBy <http://example.com/publication1> , <http://example.com/publication2> .
+        dct:isReferencedBy <http://example.com/publication1> ,
+                           <http://example.com/publication2> .
 }
 
 
 # ----- Replaces -----
 
-
+testgraphs:replaces-1 {
+    test:validDatasetBase
+        dct:replaces <http://example.com/dataset1>,
+                     <http://example.com/dataset2> .
+}
 
 
 # ----- Previous -----
 
+testgraphs:previous-1 {
+    test:validDatasetBase
+        dcat:prev <http://example.com/dataset1> .
+}
+
 
 # ----- Frequency -----
+
+testgraphs:frequency-1 {
+    test:validDatasetBase
+        dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/ANNUAL> .
+}
 
 
 # ----- Has Cost -----
 
+testgraphs:cost-1 {
+    test:validDatasetBase ;
+        cv:hasCost  [ a cv:Cost ] ,
+                    [ a cv:Cost ] ;
+        .
+}
+
+testgraphs:cost-2 {
+    test:validDatasetBase ;
+        cv:hasCost <http://example.com/cost> ;
+        .
+
+    <http://example.com/cost> a cv:Cost ;
+        .
+}
+
+testgraphs:cost-3 {
+    test:validDatasetBase ;
+        cv:hasCost [
+            a cv:Cost ;
+            foaf:page <http://example.com/cost-description> ;
+        ];
+        .
+}
+
 
 # ----- Has Quality Annotation -----
+
+testgraphs:hasQualityAnnotation-1 {
+    test:validDatasetBase ;
+        dqv:hasQualityAnnotation  [ a dqv:QualityAnnotation ] ,
+            <http://example.com/qualityAnnotation> .
+
+        <http://example.com/qualityAnnotation> a dqv:QualityAnnotation .
+}
 
 
 # ----- Has Quality Measurement -----
 
+testgraphs:hasQualityMeasurement-1 {
+    test:validDatasetBase ;
+        dqv:hasQualityMeasurement  [ a dqv:QualityMeasurement ] ,
+            <http://example.com/qualityMeasurement> .
+
+        <http://example.com/qualityMeasurement> a dqv:QualityMeasurement .
+}
+
 
 # ----- Has Version -----
+
+testgraphs:hasVersion-1 {
+    test:validDatasetBase
+        dcat:hasVersion <http://example.com/dataset1> ,
+                        <http://example.com/dataset2> .
+}
 
 
 # ----- Conforms To -----
 
+testgraphs:conformsTo-1 {
+    test:validDatasetBase ;
+        dct:conformsTo  <http://data.europa.eu/eli/reg/2014/1312/oj>,
+                        <http://www.opengis.net/def/crs/EPSG/0/28992> .
+}
+
 
 # ----- In Series -----
+
+testgraphs:inSeries-1 {
+    test:validDatasetBase ;
+        dcat:inSeries <http://example.com/datasetseries> .
+}
 
 
 # ----- Identifier -----
 
+testgraphs:identifier-1 {
+    test:validDatasetBase ;
+        dct:identifier  "http://example.com/identifier-123456789",
+                        "identifier-123456789" .
+}
+
 
 # ----- Source -----
+
+testgraphs:source-1 {
+    test:validDatasetBase
+        dct:source  <http://example.com/dataset1> ,
+                    <http://example.com/dataset2> .
+}
 
 
 # ----- Landing Page -----
 
+testgraphs:landingPage-1 {
+    test:validDatasetBase
+        dcat:landingPage  <http://example.com/dataset-information> ,
+                          <http://example.com/other-dataset-information> .
+}
+
 
 # ----- Creator -----
+
+testgraphs:creator-1 {
+    test:validDatasetBase
+        dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ,
+                    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> .
+
+        # TODO: should these be necessary?
+        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> a foaf:Agent .
+}
 
 
 # ----- Relation -----
 
+testgraphs:relation-1 {
+    test:validDatasetBase
+        dct:relation <http://example.com/external-resource1> ,
+                     <http://example.com/external-resource2> .
+}
+
 
 # ----- Spatial Resolution -----
+
+testgraphs:spatialResolutionInMeters-1 {
+    test:validDatasetBase ;
+        dcat:spatialResolutionInMeters "10"^^xsd:decimal .
+}
 
 
 # ----- Language / CV Language -----
 
+testgraphs:language-1 {
+    test:validDatasetBase ;
+        dct:language  <http://publications.europa.eu/resource/authority/language/NOR> ,
+                      <http://publications.europa.eu/resource/authority/language/ENG> .
+}
+
 
 # ----- Temporal Resolution -----
+
+testgraphs:temporalResolution-1 {
+    test:validDistributionBase ;
+        dcat:temporalResolution "P5Y2M10D"^^xsd:duration .
+}
 
 
 # ----- Type / CV Dataset Type -----
 
+testgraphs:type-1 {
+    test:validDatasetBase
+        dct:type <http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA>,
+                 <https://wikidata.org/wiki/Q7705759>,
+                 [
+                    a skos:Concept;
+                    rdfs:label "Test data"
+                 ] .
+}
+
 
 # ----- Release Date -----
+
+testgraphs:releaseDate-1 {
+    test:validDatasetBase ;
+        dct:issued "2025-01-01"^^xsd:date .
+}
+
+testgraphs:releaseDate-2 {
+    test:validDatasetBase ;
+        dct:issued "2025-01-01T00:00:00"^^xsd:dateTime .
+}
 
 
 # ----- Version -----
 
+testgraphs:version-1 {
+    test:validDatasetBase ;
+        dcat:version "versjon 3" ;
+        .
+}
+
 
 # ----- Version Notes -----
 
+testgraphs:versionNotes-1 {
+    test:validDatasetBase ;
+        adms:versionNotes "Merknad om versjon"@nb, "Note on version"@en;
+        .
+}

@@ -346,63 +346,342 @@ testgraphs:isReferencedBy-2 {
 
 # ----- Replaces -----
 
+testgraphs:replaces-1 {
+    test:validDatasetBase
+        dct:replaces [ a dcat:Dataset ] . # blank nodes not allowed
+}
+
+testgraphs:replaces-2 {
+    test:validDatasetBase
+        dct:replaces "http://example.com/dataset"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:replaces-3 {
+    test:validDatasetBase
+        dct:replaces [ a rdfs:Resource ] . # blank nodes not allowed
+}
+
 
 # ----- Previous -----
+
+testgraphs:previous-1 {
+    test:validDatasetBase
+        dcat:prev [ a dcat:Dataset ] . # blank nodes not allowed
+}
+
+testgraphs:previous-2 {
+    test:validDatasetBase
+        dcat:prev [ a rdfs:Resource ] . # blank nodes not allowed
+}
+
+testgraphs:previous-3 {
+    test:validDatasetBase
+        dcat:prev "http://example.com/dataset"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:previous-4 {
+    test:validDatasetBase
+        dcat:prev <http://example.com/dataset1>, <http://example.com/dataset2> . # too many values, max 1
+}
 
 
 # ----- Frequency -----
 
+testgraphs:frequency-1 {
+    test:validDatasetBase
+        dct:accrualPeriodicity "http://example.com/frequency"^^xsd:anyURI . # wrong type
+}
+
+testgraphs:frequency-2 {
+    test:validDatasetBase
+        dct:accrualPeriodicity [ a dct:Frequency ] . # wrong type, blank nodes not allowed
+}
+
+testgraphs:frequency-3 {
+    test:validDatasetBase
+        dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/ANNUAL> , # too many values, max 1
+                               <http://publications.europa.eu/resource/authority/frequency/30MIN> .
+}
+
+testgraphs:frequency-4 {
+    test:validDatasetBase
+        dct:accrualPeriodicity <http://example.com/frequency/1MIN> . # not from controlled vocab
+}
+
 
 # ----- Has Cost -----
 
+testgraphs:cost-1 {
+    test:validDatasetBase ;
+        cv:hasCost "invalid cost" ;
+        .
+}
+
+testgraphs:cost-2 {
+    test:validDatasetBase ;
+        cv:hasCost <http://example.com/not-available-should-fail> ; # should fail?
+        .
+}
+
+testgraphs:cost-3 {
+    test:validDatasetBase ;
+        cv:hasCost [
+            # ... a cv:Cost mangler
+            dct:description "Behandlingsgebyr"@nb ;
+        ];
+        .
+}
+
 
 # ----- Has Quality Annotation -----
+
+testgraphs:hasQualityAnnotation-1 {
+    test:validDatasetBase ;
+        dqv:hasQualityAnnotation  "http://example.com/qualityAnnotation1"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:hasQualityAnnotation-2 {
+    test:validDatasetBase ;
+        dqv:hasQualityAnnotation [ a rdfs:Resource ] .  # wrong rdf:type
+}
 
 
 # ----- Has Quality Measurement -----
 
 
+testgraphs:hasQualityMeasurement-1 {
+    test:validDatasetBase ;
+        dqv:hasQualityMeasurement  "http://example.com/qualityMeasurement1"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:hasQualityMeasurement-2 {
+    test:validDatasetBase ;
+        dqv:hasQualityMeasurement [ a rdfs:Resource ] .  # wrong rdf:type
+}
+
+
 # ----- Has Version -----
+
+testgraphs:hasVersion-1 {
+    test:validDatasetBase
+        dcat:hasVersion [ a dcat:Dataset ] . # blank nodes not allowed
+}
+
+testgraphs:hasVersion-2 {
+    test:validDatasetBase
+        dcat:hasVersion [ a rdfs:Resource ] . # blank nodes not allowed
+}
+
+testgraphs:hasVersion-3 {
+    test:validDatasetBase
+        dcat:hasVersion "http://example.com/dataset"^^xsd:anyURI . # wrong type
+}
 
 
 # ----- Conforms To -----
 
+testgraphs:conformsTo-1 {
+    test:validDatasetBase ;
+        dct:conformsTo "https://www.w3.org/TR/sparql11-protocol/" ; # invalid type
+        .
+}
+
 
 # ----- In Series -----
+
+testgraphs:inSeries-1 {
+    test:validDatasetBase ;
+        dcat:inSeries "http://example.com/dataset-series"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:inSeries-2 {
+    test:validDatasetBase ;
+        dcat:inSeries [ a rdfs:Resource ] .  # blank nodes not allowed
+}
 
 
 # ----- Identifier -----
 
+testgraphs:identifier-1 {
+    test:validDatasetBase ;
+        dct:identifier <http://example.com/identifier-123456789> .  # wrong type
+}
+
+testgraphs:identifier-2 {
+    test:validDatasetBase ;
+        dct:identifier [ a rdfs:Resource ] .  # wrong type
+}
+
 
 # ----- Source -----
+
+testgraphs:source-1 {
+    test:validDatasetBase
+        dct:source [ ] . # blank nodes not allowed
+}
+
+testgraphs:hasVersion-2 {
+    test:validDatasetBase
+        dct:source "http://example.com/dataset"^^xsd:anyURI . # wrong type
+}
 
 
 # ----- Landing Page -----
 
+testgraphs:landingPage-1 {
+    test:validDatasetBase
+        dcat:landingPage "http://example.com/dataset-information"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:landingPage-2 {
+    test:validDatasetBase
+        dcat:landingPage [ a foaf:Document ] .  # blank nodes not allowed
+}
+
 
 # ----- Creator -----
+
+testgraphs:creator-1 {
+    test:validDatasetBase
+        dct:creator "https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:creator-2 {
+    test:validDatasetBase
+        dct:creator [ a foaf:Agent ] .  # blank nodes not allowed
+}
 
 
 # ----- Relation -----
 
+testgraphs:relation-1 {
+    test:validDatasetBase
+        dct:relation [ ] . # blank nodes not allowed
+}
+
+testgraphs:relation-2 {
+    test:validDatasetBase
+        dct:relation "http://example.com/dataset"^^xsd:anyURI . # wrong type
+}
+
 
 # ----- Spatial Resolution -----
+
+testgraphs:spatialResolutionInMeters-1 {
+    test:validDatasetBase ;
+        dcat:spatialResolutionInMeters <http://example.com/10-meters> . # wrong type
+}
+
+testgraphs:spatialResolutionInMeters-2 {
+    test:validDatasetBase ;
+        dcat:spatialResolutionInMeters [ a rdfs:Resource ] . # wrong type
+}
+
+testgraphs:spatialResolutionInMeters-3 {
+    test:validDatasetBase ;
+        dcat:spatialResolutionInMeters "10"^^xsd:decimal, "15"^^xsd:decimal . # too many values
+}
 
 
 # ----- Language / CV Language -----
 
+testgraphs:language-1 {
+    test:validDatasetBase ;
+        dct:language "norwegian" .
+}
+
+testgraphs:language-2 {
+    test:validDatasetBase ;
+        dct:language <http://example.com/norwegian> .
+}
+
+testgraphs:language-3 {
+    test:validDatasetBase ;
+        dct:language [ a dct:LinguisticSystem ] .
+}
+
 
 # ----- Temporal Resolution -----
+
+testgraphs:temporalResolution-1 {
+    test:validDatasetBase ;
+        dcat:temporalResolution <http://example.com/a-week> . # wrong type
+}
+
+testgraphs:temporalResolution-2 {
+    test:validDatasetBase ;
+        dcat:temporalResolution [ a rdfs:Resource ] . # wrong type
+}
+
+testgraphs:temporalResolution-3 {
+    test:validDatasetBase ;
+        dcat:temporalResolution "P5Y2M10D"^^xsd:duration, "P5Y"^^xsd:duration . # too many values
+}
 
 
 # ----- Type / CV Dataset Type -----
 
+testgraphs:type-1 {
+    test:validDatasetBase
+        dct:type "http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA"^^xsd:anyURI .  # wrong type
+}
+
 
 # ----- Release Date -----
+
+testgraphs:releaseDate-1 {
+    test:validDatasetBase ;
+        dct:issued "2025-01-01"^^xsd:date, "2025-01-01T00:00:00"^^xsd:dateTime . # too many values
+}
+
+testgraphs:releaseDate-2 {
+    test:validDatasetBase ;
+        dct:issued <http://example.com/2025-01-01> . # wrong type
+}
+
+testgraphs:releaseDate-3 {
+    test:validDatasetBase ;
+        dct:issued [ a rdfs:Resource ] . # wrong type
+}
 
 
 # ----- Version -----
 
+testgraphs:version-1 {
+    test:validDatasetBase ;
+        dcat:version <http://example.com/invalid-type> ; # invalid type
+        .
+}
+
+testgraphs:version-2 {
+    test:validDatasetBase ;
+        dcat:version [] ; # invalid type
+        .
+}
+
+testgraphs:version-3 {
+    test:validDatasetBase ;
+        dcat:version "versjon 1"@nb, "version 1", "1"^^xsd:integer ;  # too many values, max 1
+        .
+}
+
 
 # ----- Version Notes -----
 
+testgraphs:versionNotes-1 {
+    test:validDatasetBase ;
+        adms:versionNotes <http://example.com/invalid-type>;  # wrong type
+        .
+}
+
+testgraphs:versionNotes-2 {
+    test:validDatasetBase ;
+        adms:versionNotes [ a skos:Concept ; skos:prefLabel "invalid version notes"@nb ];  # wrong type
+        .
+}
+
+testgraphs:versionNotes-3 {
+    test:validDatasetBase ;
+        adms:versionNotes "not a langstring"; # not a rdf:langString
+        .
+}

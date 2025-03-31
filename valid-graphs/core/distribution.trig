@@ -261,14 +261,14 @@ testgraphs:title-2 {
 }
 
 
-# ----- Issued -----
+# ----- Release Date -----
 
-testgraphs:issued-1 {
+testgraphs:releaseDate-1 {
     test:validDistributionBase ;
         dct:issued "2025-01-01"^^xsd:date .
 }
 
-testgraphs:issued-2 {
+testgraphs:releaseDate-2 {
     test:validDistributionBase ;
         dct:issued "2025-01-01T00:00:00"^^xsd:dateTime .
 }

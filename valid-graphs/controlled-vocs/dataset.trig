@@ -105,9 +105,40 @@ testgraphs:accessRights-1 {
         skos:inScheme  <http://publications.europa.eu/resource/authority/access-right> .
 }
 
+# ----- Frequency / CV Frequency -----
+
+testgraphs:frequency-1 {
+    test:validDatasetBase
+        dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/ANNUAL> .
+
+    <http://publications.europa.eu/resource/authority/frequency/ANNUAL> a skos:Concept ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/frequency> .
+}
+
 
 # ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validDatasetBase
+        dct:language <http://publications.europa.eu/resource/authority/language/NOR> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/language/NOR> a skos:Concept ;
+        skos:notation "NOR" ;
+        skos:prefLabel "Norwegian"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/language> ;
+        .
+}
 
 
 # ----- Type / CV Dataset Type -----
 
+testgraphs:type-1 {
+    test:validDatasetBase
+        dct:type <http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA> a skos:Concept ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/dataset-type> ;
+        .
+}

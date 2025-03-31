@@ -443,7 +443,7 @@ testgraphs:version-1 {
         .
 }
 
-testgraphs:version-1 {
+testgraphs:version-2 {
     test:validDataServiceBase ;
         dcat:version [] ; # invalid type
         .

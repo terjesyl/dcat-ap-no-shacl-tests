@@ -146,6 +146,22 @@ Hva med:
 - dct:PeriodOfTime
 - dcat:DataService (dcat:accessService)
 - dcat:Dataset (dcat:servesDataset)
+- prov:Attribution (prov:qualifiedAttribution)
+- adms:Identifier (adms:identifier)
+- dcat:Relationship (dcat:qualifiedRelation)
+- dct:ProvenanceStatement (dct:provenance)
+- dcat:Dataset (dct:replaces)
+- dcat:Dataset (dcat:prev)
+- dcat:Dataset (dcat:hasVersion)
+- dqv:QualityAnnotation
+- dqv:QualityMeasurement
+- dcat:DatasetSeries (dcat:inSeries)
+- dcat:Distribution (adms:sample)
+- foaf:Agent og subklasser (dct:creator)
+
+### Forslag
+
+TODO (Nice-to-have): Sett `sh:Violation sh:Info` og gi informativ beskjed for alle shapes som ikke matcher på `sh:class <forventet-type-i-range>`
 
 
 ### Class/Range restrictions
@@ -257,3 +273,30 @@ Vurder å splitte opp i separate filer.
   - min og max count + LEAST 1
 - Controlled Vocabularies
   - Validere CV som data-grafer
+
+## Hva skal reglene kalles?
+
+TODO: Sjekk med SEMICs Guidelines at forslagene her stemmer overens
+
+Sjekk av nodeKind (datatype/objekttype):
+`:nodeKindShape-nnnnnn`
+
+Eksempel: `:nodeKindShape-dctReplaces`
+
+Sjekk av kardinalitet
+`:minXMaxXShape-nnnnnn`
+
+Eksempel: `:min1MaxNShape-dctTitle`
+
+Sjekk av range (pattern)
+`:hasShapeCV-nnnnnnnnPattern` eller `:hasShapeCVPattern-nnnnnnnn`
+
+Eksempel: `:hasShapeCV-licensePattern` `:hasShapeCVPattern-license`
+
+Sjekk av range (skos:inScheme)
+`:hasShapeCV-nnnnnnn`
+
+Eksempel: `:hasShapeCV-provWasGeneratedBy`
+
+Og Node-sjekk:
+`sh:node :AccrualPeriodicityRestriction` eller `sh:node :AccrualPeriodicityShape` ?

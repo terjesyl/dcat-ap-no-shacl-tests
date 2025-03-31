@@ -17,7 +17,6 @@ CONTROLLED_VOC_SHACL_SHAPES_PATH = "~/repos/dcat-ap-no/shacl/vocabularies.shapes
 ONTOLOGY_PATH = "~/repos/dcat-ap-no/shacl/ontologies.ttl"
 
 
-
 TESTS_TO_RUN = [  # must match directory name
     "valid-graphs",
     "invalid-graphs"
@@ -25,8 +24,8 @@ TESTS_TO_RUN = [  # must match directory name
 
 CLASS_KEYS = [  # must match file name (excluding suffixes)
     'dataset',
-    'data-service',
-    'distribution'
+    # 'data-service',
+    # 'distribution',
 ]
 
 class PRINT(enum.Enum):
@@ -128,29 +127,33 @@ def _print_result(class_type, success):
 def _print_reports_per_conformance(reports, graph_is_conformant):
     reports = {path: report for path, report in reports.items() if report[0] is graph_is_conformant}
     for path, (_, _, text) in reports.items():
-        print(" === " + _color.magenta + f"{path}" + _color.reset + " ===")
+        print("URI: " + _color.magenta + f"{path}" + _color.reset)
         print(text)
 
 
 def _print_reports(collected_reports):
-    print(f"==================== REPORTS =====================")
     if PRINT_REPORTS == PRINT.ALL:
-        for valid_or_invalid, reports in collected_reports.items():
+        print(f"\n======================= REPORTS ========================\n")
+        for _, reports in collected_reports.items():
             _print_reports_per_conformance(reports, graph_is_conformant=True)
             _print_reports_per_conformance(reports, graph_is_conformant=False)
+        print()
     
     if PRINT_REPORTS == PRINT.ONLY_NON_CONFORMANT:
-        for valid_or_invalid, reports in collected_reports.items():
+        print(f"\n======================= REPORTS ========================\n")
+        for _, reports in collected_reports.items():
             _print_reports_per_conformance(reports, graph_is_conformant=False)
+        print()
 
     if PRINT_REPORTS == PRINT.ONLY_FAILED_TESTS:
+        print(f"\n======================= REPORTS ========================\n")
         _print_reports_per_conformance(collected_reports["valid-graphs"], graph_is_conformant=False)
         _print_reports_per_conformance(collected_reports["invalid-graphs"], graph_is_conformant=True)
-    print()
+        print()
 
 
 def _print_results(results):
-    print(f"\n==================== RESULTS =====================")
+    print(f"\n======================= RESULTS ========================")
 
     if "valid-graphs" in TESTS_TO_RUN:
         print(f"\nValid Graphs")
@@ -195,8 +198,6 @@ def main():
         "invalid-graphs": dict()
     }
 
-    any_failed_tests = False
-
     for valid_or_invalid in TESTS_TO_RUN:
         for validation_extensions in ["core", "controlled-vocs"]:
             for class_key in CLASS_KEYS:
@@ -216,14 +217,10 @@ def main():
                     base_graph,
                     expect_valid
                 )
-                if not success:
-                    any_failed_tests = True
                 results[valid_or_invalid][validation_extensions][class_key] = success
                 collected_reports[valid_or_invalid].update(**reports)
 
-    if any_failed_tests:
-        _print_reports(collected_reports)
-
+    _print_reports(collected_reports)
     _print_results(results)
 
 

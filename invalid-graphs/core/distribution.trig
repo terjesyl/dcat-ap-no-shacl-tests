@@ -378,7 +378,7 @@ testgraphs:language-3 {
         dct:language [ a dct:LinguisticSystem ] .
 }
 
-# ----- Temporal Resolution -----p
+# ----- Temporal Resolution -----
 
 testgraphs:temporalResolution-1 {
     test:validDistributionBase ;
@@ -427,20 +427,20 @@ testgraphs:title-3 {
 }
 
 
-# ----- Issued -----
+# ----- Release Date -----
 
 
-testgraphs:issued-1 {
+testgraphs:releaseDate-1 {
     test:validDistributionBase ;
         dct:issued "2025-01-01"^^xsd:date, "2025-01-01T00:00:00"^^xsd:dateTime . # too many values
 }
 
-testgraphs:issued-2 {
+testgraphs:releaseDate-2 {
     test:validDistributionBase ;
         dct:issued <http://example.com/2025-01-01> . # wrong type
 }
 
-testgraphs:issued-3 {
+testgraphs:releaseDate-3 {
     test:validDistributionBase ;
         dct:issued [ a rdfs:Resource ] . # wrong type
 }

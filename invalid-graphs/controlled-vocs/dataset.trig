@@ -145,9 +145,59 @@ testgraphs:accessRights-2 {
         # skos:inScheme intentionally missing
 }
 
+# ----- Frequency / CV Frequency -----
+
+testgraphs:frequency-1 {
+    test:validDatasetBase
+        dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/ANNUAL> .
+
+    <http://publications.europa.eu/resource/authority/frequency/ANNUAL>
+        # a skos:Concept intentionally missing;
+        skos:inScheme <http://publications.europa.eu/resource/authority/frequency> .
+}
+
+testgraphs:frequency-2 {
+    test:validDatasetBase
+        dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/ANNUAL> .
+
+    <http://publications.europa.eu/resource/authority/frequency/ANNUAL>
+        a skos:Concept ;
+        # skos:inScheme intentionally missing
+        .
+}
+
 
 # ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validDatasetBase
+        dct:language <http://publications.europa.eu/resource/authority/language/NOR> .
+
+    <http://publications.europa.eu/resource/authority/language/NOR>
+        # ... a skos:Concept intentionally missing
+        skos:notation "NOR" ;
+        skos:prefLabel "Norwegian"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/access-right> .
+}
+
+testgraphs:language-2 {
+    test:validDatasetBase
+        dct:language <http://publications.europa.eu/resource/authority/language/NOR> .
+
+    <http://publications.europa.eu/resource/authority/language/NOR>
+        a skos:Concept ;
+        skos:notation "NOR" ;
+        skos:prefLabel "Norwegian"@en ;
+        # ... skos:inScheme intentionally missing
+        .
+}
+
+testgraphs:language-3 {
+    test:validDatasetBase
+        dct:language <http://publications.europa.eu/resource/authority/language/NOR> .  # resource missing
+}
 
 
 # ----- Type / CV Dataset Type -----
 
+# Not testing usage of CV, since usage of the Controlled Vocabulary Dataset Type is a MAY requirement
