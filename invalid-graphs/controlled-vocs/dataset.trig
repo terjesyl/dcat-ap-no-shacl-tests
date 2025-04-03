@@ -106,12 +106,12 @@ testgraphs:dataTheme-3 {
 
 testgraphs:concept-1 {
     test:validDatasetBase
-        dct:subject <http://example.com/begrep1> . # missing a skos:Concept
+        dct:subject <http://example.com/begrep1> .  # missing a skos:Concept
 }
 
 testgraphs:concept-2 {
     test:validDatasetBase
-        dct:subject [ ] . # missing a skos:Concept
+        dct:subject [ ] .  # missing a skos:Concept
 }
 
 

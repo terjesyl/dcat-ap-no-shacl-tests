@@ -37,7 +37,7 @@ PREFIX testgraphs: <http://example.com/test-graphs/valid/datasets/>
 # Title, description, contact point, publisher, theme
 
 testgraphs:all-mandatory-properties-1 {
-    test:validDatasetBase a dcat:Dataset . # From valid base description
+    test:validDatasetBase a dcat:Dataset .  # From valid base description
 }
 
 
@@ -79,7 +79,7 @@ testgraphs:concept-1 {
 
 testgraphs:concept-2 {
     test:validDatasetBase a dcat:Dataset ;
-        dct:subject [ a skos:Concept ] . # blank nodes allowed
+        dct:subject [ a skos:Concept ] .  # blank nodes allowed
 }
 
 

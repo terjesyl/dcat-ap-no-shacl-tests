@@ -74,8 +74,8 @@ testgraphs:filetype-3 {
         .
 }
 
-# ----- License / CV License -----
 
+# ----- License / CV License -----
 
 testgraphs:license-1 {
     test:validDistributionBase
@@ -113,6 +113,7 @@ testgraphs:license-3 {
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> ;
         .
 }
+
 
 # ----- Status / CV Distribution Status -----
 

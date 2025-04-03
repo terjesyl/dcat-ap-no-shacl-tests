@@ -36,7 +36,7 @@ PREFIX testgraphs: <http://example.com/test-graphs/valid/distribution/>
 # Mandatory properties:
 
 testgraphs:all-mandatory-properties-1 {
-    test:validDistributionBase a dcat:Distribution . # From valid base description
+    test:validDistributionBase a dcat:Distribution .  # From valid base description
 }
 
 # ----- Access URL -----

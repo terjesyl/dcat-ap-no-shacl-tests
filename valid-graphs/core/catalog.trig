@@ -1,0 +1,241 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-catalogs/>
+PREFIX testgraphs: <http://example.com/test-graphs/valid/catalogs/>
+
+# ===== Testing valid Catalog descriptions =====
+
+# Mandatory properties
+# Description, contact point, title, publisher
+
+testgraphs:all-mandatory-properties-1 {
+    test:validCatalogBase a dcat:Catalog .  # From valid base description
+}
+
+
+# ----- Description -----
+
+# Several descriptions, in addition to one in base description
+testgraphs:description-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:description "bokmålsbeskrivelse"@nb, "beskriving på nynorsk"@nn .
+}
+
+
+# ----- Contact Point -----
+
+# Several contact points, in addition to one in base description
+testgraphs:contactPoint-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:contactPoint [
+            a vcard:Group ;
+            vcard:fn "Group Contact Point"@en ;
+            vcard:hasEmail "mailto:example@example.com" ;
+        ]
+}
+
+
+# ----- Title -----
+
+# Several titles, in addition to one in base description
+testgraphs:title-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:title "Katalog"@nb, "Katalog"@nn .
+}
+
+
+# ----- Dataset -----
+
+testgraphs:dataset-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:dataset <http://example.com/dataset1> ,
+                     <http://example.com/dataset2> .
+}
+
+
+# ----- Service -----
+
+testgraphs:dataset-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:dataset <http://example.com/dataService1> ,
+                     <http://example.com/dataService2> .
+}
+
+
+# ----- Spatial / CV Continent / CV Countries and Territories / CV Place / CV Administrative Units -----
+# TODO
+
+# ----- Modified -----
+
+testgraphs:modified-1 {
+    test:validCatalogBase ;
+        dct:modified "2025-01-01"^^xsd:date .
+}
+
+testgraphs:modified-2 {
+    test:validCatalogBase ;
+        dct:modified "2025-01-01T12:00:00"^^xsd:dateTime .
+}
+
+
+# -----Homepage -----
+
+testgraphs:page-1 {
+    test:validCatalogBase
+        foaf:homepage <http://example.com/catalog-homepage> .
+}
+
+
+# ----- License / CV License -----
+
+testgraphs:license-1 {
+    test:validCatalogBase ;
+        dct:license <http://publications.europa.eu/resource/authority/licence/CC0> .
+}
+
+
+# ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validCatalogBase ;
+        dct:language  <http://publications.europa.eu/resource/authority/language/NOR> ,
+                      <http://publications.europa.eu/resource/authority/language/ENG> .
+}
+
+
+# ----- Themes -----
+
+testgraphs:themeTaxonomy-1 {
+    test:validCatalogBase ;
+        dcat:themeTaxonomy  <http://publications.europa.eu/resource/authority/data-theme> ,
+                            <http://psi.norge.no/los/> .
+}
+
+
+# ----- Release Date -----
+
+testgraphs:releaseDate-1 {
+    test:validCatalogBase ;
+        dct:issued "2025-01-01"^^xsd:date .
+}
+
+testgraphs:releaseDate-2 {
+    test:validCatalogBase ;
+        dct:issued "2025-01-01T00:00:00"^^xsd:dateTime .
+}
+
+
+# ----- Applicable Legislation -----
+
+testgraphs:applicableLegislation-1 {
+    test:validCatalogBase
+        dcatap:applicableLegislation <https://lovdata.no/eli/forskrift/2016/12/15/1600> ,
+                                     <https://lovdata.no/eli/lov/2024/12/13/77> .
+}
+
+
+# ----- Has Part -----
+
+testgraphs:hasPart-1 {
+    test:validCatalogBase
+        dct:hasPart <https://example.com/catalog1> ,
+                    <https://example.com/catalog2> .
+}
+
+
+# ----- Identifier -----
+
+
+testgraphs:identifier-1 {
+    test:validCatalogBase ;
+        dct:identifier  "http://example.com/identifier-123456789",
+                        "identifier-123456789" ,
+                        "http://example.com/test-graphs/valid/catalogs/validCatalogBase" .
+}
+
+
+# ----- Catalogue -----
+
+testgraphs:catalog-1 {
+    test:validCatalogBase
+        dcat:catalog <http://example.com/catalog1> ,
+                     <http://example.com/catalog2> .
+}
+
+
+# ----- Record -----
+
+testgraphs:record-1 {
+    test:validCatalogBase
+        dcat:record <http://example.com/record1> ,
+                     <http://example.com/record2> .
+}
+
+
+# ----- Creator -----
+
+testgraphs:creator-1 {
+    test:validCatalogBase
+        dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .  # too many values
+
+        # TODO: should this triple be necessary?
+        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}
+
+
+# ----- Rights -----
+
+testgraphs:rights-1 {
+    test:validCatalogBase ;
+        dct:rights <http://example.com/a-rights-statement> .
+
+    <http://example.com/a-rights-statement> a odrs:RightsStatement ;
+        odrs:reuserGuidelines <https://example.org/aRightsStatement> .
+}
+
+testgraphs:rights-2 {
+    test:validCatalogBase ;
+        dct:rights [ a odrs:RightsStatement ] .
+}
+
+
+# ----- Temporal -----
+
+testgraphs:temporal-1 {
+    test:validCatalogBase
+        dct:temporal <http://example.com/temporal-range> .
+
+    <http://example.com/temporal-range> a dct:PeriodOfTime .
+}
+
+testgraphs:temporal-2 {
+    test:validCatalogBase
+        dct:temporal [ a dct:PeriodOfTime ] .
+}

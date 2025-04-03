@@ -1,0 +1,400 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-catalogs/>
+PREFIX testgraphs: <http://example.com/test-graphs/invalid/catalogs/>
+
+# ===== Testing invalid Catalog descriptions =====
+
+
+# ----- Description Point -----
+
+testgraphs:description-1 {
+    <http://example.com/catalog> a dcat:Catalog ;
+        dct:title "Catalog missing description"@en ;
+        # dct:description intentionally missing
+        dcat:contactPoint [
+            a vcard:Group ;
+            vcard:fn "Group Contact Point"@en ;
+            vcard:hasEmail "mailto:example@example.com" ;
+        ] ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}
+
+testgraphs:description-2 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:description "bokmålsbeskrivelse"@nb,  # too many values in same language
+                        "enda en bokmålsbeskrivelse"@nb .
+}
+
+testgraphs:description-3 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:description [ a rdfs:Resource ] .  # wrong type
+}
+
+testgraphs:description-4 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:description <http://example.com/description> .  # wrong type
+}
+
+
+# ----- Contact Point -----
+
+testgraphs:contactPoint-1 {
+    <http://example.com/catalog> a dcat:Catalog ;
+        dct:title "Catalog missing contact point"@en ;
+        dct:description "Catalog missing contact point"@en ;
+        # dcat:contactPoint intentionally missing
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}
+
+testgraphs:contactPoint-2 {
+    test:validCatalogBase
+        dcat:contactPoint "mailto:informasjonsforvaltning@digdir.no" .  # wrong type
+}
+
+testgraphs:contactPoint-3 {
+    test:validCatalogBase
+        dcat:contactPoint "http://digdir.no"^^xsd:anyURI .  # wrong type
+}
+
+
+# ----- Title -----
+
+testgraphs:title-1 {
+    <http://example.com/catalog> a dcat:Catalog ;
+        # dct:title intentionally missing ;
+        dct:description "Catalog missing description"@en ;
+        dcat:contactPoint [
+            a vcard:Group ;
+            vcard:fn "Group Contact Point"@en ;
+            vcard:hasEmail "mailto:example@example.com" ;
+        ] ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}
+
+testgraphs:title-2 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:title <http://example.com/description> .  # wrong type
+}
+
+testgraphs:title-3 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:title "Title without language tag" .  # not a rdf:langString
+}
+
+testgraphs:title-4 {
+    test:validCatalogBase a dcat:Catalog ;
+        dct:title "Bokmålstittel 1"@nb,  # too many values in same language
+                  "Bokmålstittel 2"@nb .
+}
+
+
+# ----- Publisher -----
+
+testgraphs:publisher-1 {
+    test:validCatalogBase
+        dct:publisher "https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:publisher-2 {
+    test:validCatalogBase
+        dct:publisher [ a foaf:Agent ] .  # wrong type
+}
+
+testgraphs:publisher-3 {
+    <http://example.com/catalog> a dcat:Catalog ;
+        dct:title "Catalog"@en ;
+        dct:description "Catalog description"@en ;
+        dcat:contactPoint test:contactPointBase ;
+        dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> , # too many values
+                      <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> ;
+        .
+
+    # TODO: should not be necessary, remove
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> a foaf:Agent .  
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}
+
+
+# ----- Dataset -----
+
+testgraphs:dataset-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:dataset "http://example.com/dataset"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:dataset-2 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:dataset [ a rdfs:Resource ] .  # blank nodes not allowed
+}
+
+
+# ----- Service -----
+
+testgraphs:dataset-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:service "http://example.com/dataService"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:dataset-2 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:service [ a rdfs:Resource ] .  # blank nodes not allowed
+}
+
+
+# ----- Spatial / CV Continent / CV Countries and Territories / CV Place / CV Administrative Units -----
+# TODO
+
+
+# ----- Modified -----
+
+testgraphs:modified-1 {
+    test:validCatalogBase ;
+        dct:modified "1234567890"^^xsd:int .  # invalid type
+}
+
+testgraphs:modified-2 {
+    test:validCatalogBase ;
+        dct:modified  "2025-01-01"^^xsd:date ,  # too many values
+                      "2025-01-01T12:00:00"^^xsd:dateTime. 
+}
+
+
+# ----- Page -----
+
+testgraphs:page-1 {
+    test:validCatalogBase
+        foaf:homepage "http://example.com/catalog-homepage"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:page-2 {
+    test:validCatalogBase
+        foaf:homepage [ a foaf:Document ] .  # blank nodes not allowed
+}
+
+testgraphs:page-3 {
+    test:validCatalogBase
+        foaf:homepage <http://example.com/catalog-homepage> ,
+                      <http://example.com/other-catalog-homepage> .
+}
+
+
+# ----- License / CV License -----
+
+testgraphs:license-1 {
+    test:validCatalogBase ;
+        dct:license "http://example.com/a-valid-identifier"^^xsd:anyURI;  # invalid type
+        .
+}
+
+testgraphs:license-2 {
+    test:validCatalogBase ;
+        dct:license <http://publications.europa.eu/resource/authority/licence/CC0> ,  # invalid, max 1 value
+                    <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> .
+}
+
+testgraphs:license-3 {
+    test:validCatalogBase ;
+        dct:license [ a dct:LicenseDocument ] .  # blank nodes not allowed
+}
+
+
+# ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validCatalogBase ;
+        dct:language "norwegian" .
+}
+
+testgraphs:language-2 {
+    test:validCatalogBase ;
+        dct:language <http://example.com/norwegian> .
+}
+
+testgraphs:language-3 {
+    test:validCatalogBase ;
+        dct:language [ a dct:LinguisticSystem ] .
+}
+
+
+# ----- Themes -----
+
+testgraphs:themeTaxonomy-1 {
+    test:validCatalogBase ;
+        dcat:themeTaxonomy  "http://publications.europa.eu/resource/authority/data-theme"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:themeTaxonomy-2 {
+    test:validCatalogBase ;
+        dcat:themeTaxonomy  [ a skos:ConceptScheme ] .  # blank nodes not allowed
+}
+
+
+# ----- Release Date -----
+
+testgraphs:releaseDate-1 {
+    test:validCatalogBase ;
+        dct:issued "2025-01-01"^^xsd:date, "2025-01-01T00:00:00"^^xsd:dateTime .  # too many values
+}
+
+testgraphs:releaseDate-2 {
+    test:validCatalogBase ;
+        dct:issued <http://example.com/2025-01-01> .  # wrong type
+}
+
+testgraphs:releaseDate-3 {
+    test:validCatalogBase ;
+        dct:issued [ a rdfs:Resource ] .  # wrong type
+}
+
+
+# ----- Applicable Legislation -----
+
+testgraphs:applicableLegislation-1 {
+    test:validCatalogBase
+        dcatap:applicableLegislation "http://example.com/legislation"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:applicableLegislation-2 {
+    test:validCatalogBase
+        dcatap:applicableLegislation [ a eli:LegalResource ] .  # wrong type
+}
+
+
+# ----- Has Part -----
+
+testgraphs:hasPart-1 {
+    test:validCatalogBase
+        dct:hasPart "https://example.com/catalog1"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:hasPart-2 {
+    test:validCatalogBase
+        dct:hasPart [ a rdfs:Resource ] .  # blank nodes not allowed
+}
+
+
+# ----- Identifier -----
+
+testgraphs:identifier-1 {
+    test:validCatalogBase ;
+        dct:identifier <http://example.com/identifier-123456789> .  # wrong type
+}
+
+testgraphs:identifier-2 {
+    test:validCatalogBase ;
+        dct:identifier [ a rdfs:Resource ] .  # wrong type
+}
+
+
+# ----- Catalogue -----
+
+testgraphs:catalog-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:catalog "http://example.com/catalog"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:catalog-2 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:catalog [ a rdfs:Resource ] .  # blank nodes not allowed
+}
+
+
+# ----- Record -----
+
+testgraphs:record-1 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:record "http://example.com/record"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:record-2 {
+    test:validCatalogBase a dcat:Catalog ;
+        dcat:record [ a rdfs:Resource ] .  # blank nodes not allowed
+}
+
+
+# ----- Creator -----
+
+testgraphs:creator-1 {
+    test:validCatalogBase
+        dct:creator "https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:creator-2 {
+    test:validCatalogBase
+        dct:creator [ a foaf:Agent ] .  # blank nodes not allowed
+}
+
+testgraphs:creator-3 {
+    test:validCatalogBase
+        dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ,  # too many values
+                    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> .
+
+        # TODO: should these be necessary?
+        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> a foaf:Agent .
+}
+
+
+# ----- Rights -----
+
+testgraphs:rights-1 {
+    test:validCatalogBase ;
+        dct:rights <http://example.com/a-rights-statement1> ,  # invalid, max 1 value
+                   <http://example.com/a-rights-statement2> .
+
+    <http://example.com/a-rights-statement1> a odrs:RightsStatement .
+    <http://example.com/a-rights-statement2> a odrs:RightsStatement .
+}
+
+testgraphs:rights-2 {
+    test:validCatalogBase ;
+        dct:rights "not a rights statement" ; # invalid type
+        .
+}
+
+
+# ----- Temporal -----
+
+testgraphs:temporal-1 {
+    test:validCatalogBase
+        dct:temporal "periodOfTime"^^xsd:anyURI .
+}
+
+testgraphs:temporal-2 {
+    test:validCatalogBase
+        dct:temporal [ a rdfs:Resource ] .  # wrong rdf:type
+}

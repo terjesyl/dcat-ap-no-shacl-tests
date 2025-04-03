@@ -37,7 +37,7 @@ PREFIX testgraphs: <http://example.com/test-graphs/valid/data-services/>
 # Endpoint URL, contact point, title, publisher, 
 
 testgraphs:all-mandatory-properties-1 {
-    test:validDataServiceBase a dcat:DataService . # From valid base description
+    test:validDataServiceBase a dcat:DataService .  # From valid base description
 }
 
 
@@ -213,19 +213,15 @@ testgraphs:license-1 {
 
 testgraphs:rights-1 {
     test:validDataServiceBase ;
-        dct:rights <http://example.com/a-rights-statement> ;
-        .
+        dct:rights <http://example.com/a-rights-statement> .
 
     <http://example.com/a-rights-statement> a odrs:RightsStatement ;
-        odrs:reuserGuidelines <https://example.org/aRightsStatement> ;
-    .
+        odrs:reuserGuidelines <https://example.org/aRightsStatement> .
 }
-
 
 testgraphs:rights-2 {
     test:validDataServiceBase ;
-        dct:rights [ a odrs:RightsStatement ] ;
-        .
+        dct:rights [ a odrs:RightsStatement ] .
 }
 
 

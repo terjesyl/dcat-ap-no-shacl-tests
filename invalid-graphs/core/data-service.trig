@@ -69,7 +69,7 @@ testgraphs:contactPoint-1 {
         dcat:endpointURL <https://example.com/> ;
     .
 
-    test:contactPoint a foaf:Agent . # wrong type
+    test:contactPoint a foaf:Agent .  # wrong type
 }
 
 testgraphs:contactPoint-2 {

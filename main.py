@@ -23,7 +23,8 @@ TESTS_TO_RUN = [  # must match directory name
 ]
 
 CLASS_KEYS = [  # must match file name (excluding suffixes)
-    'dataset',
+    'catalog',
+    # 'dataset',
     # 'data-service',
     # 'distribution',
 ]

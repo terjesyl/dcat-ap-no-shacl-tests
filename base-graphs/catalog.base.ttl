@@ -26,7 +26,7 @@ PREFIX cpsv: <http://purl.org/vocab/cpsv#>
 PREFIX eli: <http://data.europa.eu/eli/ontology#>
 PREFIX cv: <http://data.europa.eu/m8g/>
 PREFIX dqv: <http://www.w3.org/ns/dqv#>
-PREFIX test: <http://example.com/test-datasets/>
+PREFIX test: <http://example.com/test-catalogs/>
 
 test:contactPointBase a vcard:Organization ;
     vcard:fn "Base contact point name"@en ;
@@ -40,20 +40,6 @@ test:validCatalogBase a dcat:Catalog ;
     dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
     .
 
-test:validDatasetBase a dcat:Dataset ;
-    dct:title "Base Dataset"@en, "Datasett-base"@nb;
-    dct:description "Base Dataset description"@en, "Datasettbeskrivelse-base"@nb ;
-    dcat:contactPoint test:contactPointBase ;
-    dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
-    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
-    .
-
-# Necessary for test of invalid controlled vocabulary usage (other than Data Them) to work
-<http://publications.europa.eu/resource/authority/data-theme/GOVE> a skos:Concept ;
-        skos:notation "GOVE" ;
-        skos:prefLabel "Government"@en ;
-        skos:inScheme <http://publications.europa.eu/resource/authority/data-theme> ;
-        .
 
 # -------------------------------------------------
 # THE FOLLOWING STATEMENTS SHOULD NOT BE NECESSARY!

@@ -158,6 +158,8 @@ Hva med:
 - dcat:DatasetSeries (dcat:inSeries)
 - dcat:Distribution (adms:sample)
 - foaf:Agent og subklasser (dct:creator)
+- dcat:Catalog (for dct:hasPart)
+- dcat:CatalogRecord (for dcat:record)
 
 ### Forslag
 
@@ -198,7 +200,6 @@ Denne formuleringen brukes i [SHACL](https://www.w3.org/TR/shacl/#NodeKindConstr
 "The property \[property\] MUST refer to an \[IRI/URI\]"
 
 "The property \[property\] MUST be an \[IRI/URI\]"
-
 
 
 ------------------------------------------------------------------------------------------------
