@@ -46,6 +46,6 @@ test:validCatalogBase a dcat:Catalog ;
 # -------------------------------------------------
 # TODO: fix
 
-<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+#<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 
 test:validCatalogBase dct:identifier "http://example.com/test-datasets/validCatalogBase" .

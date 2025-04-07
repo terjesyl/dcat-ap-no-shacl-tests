@@ -119,7 +119,7 @@ Avklare: bruke IANA Media Type eller EUs File Type?
 ## Datasett
 
 Ordne kontrollerte vokabular:
-- Spatial
+- [ ] Spatial
 - ...
 
 

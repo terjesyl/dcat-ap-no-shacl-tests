@@ -89,8 +89,25 @@ testgraphs:dataset-1 {
 }
 
 
-# ----- Spatial / CV Continent / CV Countries and Territories / CV Place / CV Administrative Units -----
-# TODO
+# ----- Spatial / CV Place / CV Country / CV Continent / CV GeoNames / CV Administrative Units -----
+
+testgraphs:spatial-1 {
+    test:validCatalogBase
+        dct:spatial <http://publications.europa.eu/resource/authority/place/NOR_OSL> ,
+                    <http://publications.europa.eu/resource/authority/country/NOR> ,
+                    <http://publications.europa.eu/resource/authority/continent/EUROPE> .
+}
+
+testgraphs:spatial-2 {
+    test:validCatalogBase
+        dct:spatial <http://sws.geonames.org/3159954> .
+}
+
+testgraphs:spatial-3 {
+    test:validCatalogBase
+        dct:spatial <https://data.geonorge.no/administrativeEnheter/kommune/doc/172833> .
+}
+
 
 # ----- Modified -----
 

@@ -24,9 +24,9 @@ TESTS_TO_RUN = [  # must match directory name
 
 CLASS_KEYS = [  # must match file name (excluding suffixes)
     'catalog',
-    # 'dataset',
-    # 'data-service',
-    # 'distribution',
+    'dataset',
+    'data-service',
+    'distribution',
 ]
 
 class PRINT(enum.Enum):

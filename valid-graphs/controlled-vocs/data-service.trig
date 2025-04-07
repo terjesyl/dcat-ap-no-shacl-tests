@@ -44,6 +44,8 @@ testgraphs:dataTheme-1 {
         skos:prefLabel "Government"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/data-theme> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:dataTheme-2 {
@@ -63,6 +65,8 @@ testgraphs:dataTheme-2 {
         skos:prefLabel "Theme 1"@en ;
         skos:inScheme <http://example.com/other-themes> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 # ----- Availability / CV Planned Availability -----
@@ -76,6 +80,8 @@ testgraphs:plannedAvailability-1 {
         skos:notation "STABLE" ;
         skos:prefLabel "Stable"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/planned-availability> .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -91,6 +97,8 @@ testgraphs:format-1 {
         skos:prefLabel "RDF Turtle"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -106,6 +114,8 @@ testgraphs:license-1 {
         skos:prefLabel "Apache 2.0"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/licence> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -121,6 +131,8 @@ testgraphs:status-1 {
         skos:prefLabel "Completed"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -136,4 +148,6 @@ testgraphs:accessRights-1 {
         skos:prefLabel "public"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/access-right> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }

@@ -32,8 +32,6 @@ PREFIX testgraphs: <http://example.com/test-graphs/invalid/controlled-vocs/catal
 
 # ===== Testing invalid usage of controlled vocabularies on Catalog descriptions =====
 
-# ----- Spatial / CV Continent / CV Countries and Territories / CV Place / CV Administrative Units -----
-# TODO
 
 # ----- License / CV License -----
 
@@ -47,6 +45,8 @@ testgraphs:license-1 {
         skos:prefLabel "Apache 2.0"@en ;
         # skos:inScheme intentionally missing
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:license-2 {
@@ -60,6 +60,8 @@ testgraphs:license-2 {
         skos:prefLabel "Apache 2.0"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/licence> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:license-3 {
@@ -72,6 +74,8 @@ testgraphs:license-3 {
         skos:prefLabel "Code"@en ;
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> ;
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -86,6 +90,8 @@ testgraphs:language-1 {
         skos:notation "NOR" ;
         skos:prefLabel "Norwegian"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/access-right> .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:language-2 {
@@ -98,9 +104,13 @@ testgraphs:language-2 {
         skos:prefLabel "Norwegian"@en ;
         # ... skos:inScheme intentionally missing
         .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:language-3 {
     test:validCatalogBase
         dct:language <http://publications.europa.eu/resource/authority/language/NOR> .  # resource missing
+    
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }

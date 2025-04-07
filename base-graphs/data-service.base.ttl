@@ -51,6 +51,6 @@ test:validDataServiceBase a dcat:DataService ;
 # THE FOLLOWING STATEMENTS SHOULD NOT BE NECESSARY!
 # -------------------------------------------------
 
-<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+#<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 
 test:validCatalogBase dct:identifier "http://example.com/test-dataservices/validCatalogBase" .

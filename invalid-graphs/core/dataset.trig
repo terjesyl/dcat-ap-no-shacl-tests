@@ -169,8 +169,17 @@ testgraphs:distribution-1 {
 }
 
 
-# ----- Spatial / CV Administrative Units -----
-# TODO
+# ----- Spatial / CV Place / CV Country / CV Continent / CV GeoNames / CV Administrative Units -----
+
+testgraphs:spatial-1 {
+    test:validDatasetBase
+        dct:spatial "http://publications.europa.eu/resource/authority/place/NOR_OSL"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:spatial-2 {
+    test:validDatasetBase
+        dct:spatial [ a dct:Location ] .  # blank nodes not allowed
+}
 
 
 # ----- Keyword -----
