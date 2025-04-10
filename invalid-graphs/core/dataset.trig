@@ -338,7 +338,7 @@ testgraphs:modified-1 {
 testgraphs:modified-2 {
     test:validDatasetBase ;
         dct:modified  "2025-01-01"^^xsd:date ,  # too many values
-                      "2025-01-01T12:00:00"^^xsd:dateTime. 
+                      "2025-01-01T12:00:00"^^xsd:dateTime . 
 }
 
 
@@ -531,7 +531,7 @@ testgraphs:source-1 {
         dct:source [ ] .  # blank nodes not allowed
 }
 
-testgraphs:hasVersion-2 {
+testgraphs:source-2 {
     test:validDatasetBase
         dct:source "http://example.com/dataset"^^xsd:anyURI .  # wrong type
 }

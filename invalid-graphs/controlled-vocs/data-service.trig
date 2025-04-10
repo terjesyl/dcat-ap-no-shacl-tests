@@ -251,6 +251,8 @@ testgraphs:status-1 {
         skos:prefLabel "Completed"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
         .
+
+        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:status-2 {

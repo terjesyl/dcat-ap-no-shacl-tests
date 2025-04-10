@@ -1,0 +1,103 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-catalog-records/>
+PREFIX testgraphs: <http://example.com/test-graphs/valid/catalog-records/>
+
+# ===== Testing valid Catalog descriptions =====
+
+# Mandatory properties:
+# modified, primaryTopic
+
+# testgraphs:all-mandatory-properties-1 {
+#     test:validCatalogRecordBase a dcat:CatalogRecord .  # From valid base description
+# }
+
+
+# ----- Conforms To -----
+
+testgraphs:conformsTo-1 {
+    test:validCatalogRecordBase ;
+        dct:conformsTo <https://www.w3.org/TR/sparql11-protocol/>, <https://www.wikidata.org/wiki/Q2063> ;
+        .
+}
+
+
+# ----- Status / CV Distribution Status -----
+
+testgraphs:status-1 {
+    test:validCatalogRecordBase ;
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
+        .
+}
+
+# ----- Release Date -----
+
+testgraphs:releaseDate-1 {
+    test:validCatalogRecordBase ;
+        dct:issued "2025-01-01"^^xsd:date .
+}
+
+testgraphs:releaseDate-2 {
+    test:validCatalogRecordBase ;
+        dct:issued "2025-01-01T00:00:00"^^xsd:dateTime .
+}
+
+
+# ----- Description -----
+
+testgraphs:description-1 {
+    test:validCatalogRecordBase
+        dct:description "English description"@en, "Bokmålsbeskrivelse"@nb .
+}
+
+
+# ----- Source -----
+
+testgraphs:source-1 {
+    test:validCatalogRecordBase
+        dct:source  <http://example.com/catalog-record1> .
+}
+
+
+# ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validCatalogRecordBase ;
+        dct:language  <http://publications.europa.eu/resource/authority/language/NOR> ,
+                      <http://publications.europa.eu/resource/authority/language/ENG> .
+}
+
+
+# ----- Title -----
+
+testgraphs:title-1 {
+    test:validCatalogRecordBase
+        dct:title "Katalog"@nb, "Katalog"@nn .
+}

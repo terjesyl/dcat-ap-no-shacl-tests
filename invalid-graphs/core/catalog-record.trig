@@ -1,0 +1,221 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-catalog-records/>
+PREFIX testgraphs: <http://example.com/test-graphs/invalid/catalog-records/>
+
+# ===== Testing invalid Catalog Record descriptions =====
+
+
+# ----- Modified -----
+
+testgraphs:modified-1 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        foaf:primaryTopic test:validCatalogBase .
+        # intentionally missing dct:modified
+}
+
+testgraphs:modified-2 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        foaf:primaryTopic test:validCatalogBase ;
+        dct:modified "2025-01-01" .  # wrong type
+}
+
+testgraphs:modified-3 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        foaf:primaryTopic test:validCatalogBase ;
+        dct:modified [ a rdfs:Resource ] .  # wrong type
+}
+
+testgraphs:modified-4 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        foaf:primaryTopic test:validCatalogBase ;
+        dct:modified  "2025-01-01"^^xsd:date ,  # too many values
+                      "2025-01-01T12:00:00"^^xsd:dateTime . 
+}
+
+
+# ----- Primary Topic -----
+
+testgraphs:primaryTopic-1 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        dct:modified "2025-01-01"^^xsd:date ;
+        foaf:primaryTopic [ a rdfs:Resource ] .  # not an instance of one of the subclasses of dcat:Resource
+}
+
+testgraphs:primaryTopic-2 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        dct:modified "2025-01-01"^^xsd:date ;
+        foaf:primaryTopic "http://example.com/catalog" .  # wrong type
+        
+}
+
+testgraphs:primaryTopic-3 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        dct:modified "2025-01-01"^^xsd:date ;
+        foaf:primaryTopic <http://example.com/catalog> .  # rdf:type not defined
+}
+
+testgraphs:primaryTopic-4 {
+    <http://example.com/catalog-record> a dcat:CatalogRecord ;
+        dct:modified "2025-01-01"^^xsd:date ;
+        foaf:primaryTopic test:validCatalogBase,  # too many values
+                          <http://example.com/valid-dataset> .
+        
+        <http://example.com/valid-dataset> a dcat:Dataset ;
+            dct:title "Base Dataset"@en;
+            dct:description "Base Dataset description"@en;
+            dcat:contactPoint [
+                a vcard:Organization ;
+                vcard:fn "Base contact point name"@en ;
+                vcard:hasEmail "mailto:example@example.com" ;
+            ] ;
+            dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+            dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> .
+}
+
+
+# ----- Conforms To -----
+
+testgraphs:conformsTo-1 {
+    test:validCatalogRecordBase ;
+        dct:conformsTo "https://www.w3.org/TR/sparql11-protocol/" .  # invalid type
+}
+
+testgraphs:conformsTo-2 {
+    test:validCatalogRecordBase ;
+        dct:conformsTo [ a dct:Standard ] .  # blank nodes not allowed
+}
+
+
+# ----- Status / CV Distribution Status -----
+
+testgraphs:status-1 {
+    test:validCatalogRecordBase ;
+        adms:status "invalid status"; # invalid type
+        .
+}
+
+testgraphs:status-2 {
+    test:validCatalogRecordBase ;
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ,  # invalid, max 1 value
+                    <http://publications.europa.eu/resource/authority/distribution-status/DEPRECATED> ;
+        .
+}
+
+
+# ----- Release Date -----
+
+testgraphs:releaseDate-1 {
+    test:validCatalogRecordBase ;
+        dct:issued "2025-01-01"^^xsd:date, "2025-01-01T00:00:00"^^xsd:dateTime .  # too many values
+}
+
+testgraphs:releaseDate-2 {
+    test:validCatalogRecordBase ;
+        dct:issued <http://example.com/2025-01-01> .  # wrong type
+}
+
+testgraphs:releaseDate-3 {
+    test:validCatalogRecordBase ;
+        dct:issued [ a rdfs:Resource ] .  # wrong type
+}
+
+
+# ----- Description -----
+
+testgraphs:description-1 {
+    test:validCatalogRecordBase
+        dct:description "English description 1"@en, "English description 2"@en .  # Only 1 per language allowed
+}
+
+testgraphs:description-2 {
+    test:validCatalogRecordBase
+        dct:description <http://example.com/invalid-type> .  # invalid type
+}
+
+testgraphs:description-3 {
+    test:validCatalogRecordBase
+        dct:description [ a skos:Concept ] .  # invalid type
+}
+
+
+# ----- Source -----
+
+testgraphs:source-1 {
+    test:validCatalogRecordBase
+        dct:source [ ] .  # blank nodes not allowed
+}
+
+testgraphs:source-2 {
+    test:validCatalogRecordBase
+        dct:source "http://example.com/dataset"^^xsd:anyURI .  # wrong type
+}
+
+testgraphs:source-3 {
+    test:validCatalogRecordBase
+        dct:source  <http://example.com/catalog-record1> ,  # too many values
+                    <http://example.com/catalog-record2> .
+}
+
+
+# ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validCatalogRecordBase ;
+        dct:language "norwegian" .
+}
+
+testgraphs:language-2 {
+    test:validCatalogRecordBase ;
+        dct:language <http://example.com/norwegian> .
+}
+
+testgraphs:language-3 {
+    test:validCatalogRecordBase ;
+        dct:language [ a dct:LinguisticSystem ] .
+}
+
+
+# ----- Title -----
+
+testgraphs:title-1 {
+    test:validCatalogRecordBase ;
+        dct:title "Bokmålstittel 1"@nb, "Bokmålstittel 2"@nb .  # too many values in same language
+}
+
+testgraphs:title-2 {
+    test:validCatalogRecordBase ;
+        dct:title [ a rdfs:Resource ] .  # wrong type
+}
+
+testgraphs:title-3 {
+    test:validCatalogRecordBase ;
+        dct:title <http://example.com/a-title> .  # wrong type
+}

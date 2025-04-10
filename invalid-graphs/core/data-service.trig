@@ -222,6 +222,11 @@ testgraphs:conformsTo-1 {
         .
 }
 
+testgraphs:conformsTo-2 {
+    test:validDataServiceBase ;
+        dct:conformsTo [ a dct:Standard ] .  # blank nodes not allowed
+}
+
 
 # ----- Theme -----
 

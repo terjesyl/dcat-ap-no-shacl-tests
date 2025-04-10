@@ -1,14 +1,5 @@
 # TODO
 
-## Regler
-
-Gi nytt navn til
-
-- `:hasShapeCV-dcatThemeMin0MaxN`
-
-For eksempel `hasNodeKindIRIShape-dcatTheme`
-
-
 ## Alle egenskaper
 
 ### Unik per språk
@@ -34,6 +25,8 @@ Hvis en URI matcher på data-theme-URI: sjekk inScheme.
 
 For datasett, bør liste opp alle verdiene:
 vis match på pattern, så MÅ verdien matche de listede hardkodede verdiene fra Data Theme.
+
+TODO: gjør sjekk av eksakt verdi på dcat:theme på Datasett
 
 ### cv:hasCost
 
@@ -98,6 +91,10 @@ Gjøre som Warning
 
 TODO: fix: Kan velge flere algoritmer
 
+TODO: relasjoner til Checksum, anta at Checksum er del av katalogen
+
+TODO: skrive om sjekker fra sh:nodeKind sh:IRI til sh:class spdx:Checksum, kan være blanke noder.
+
 ------------------------------------------------------------------------------------------------
 
 ## Kontrollerte vokabular
@@ -160,6 +157,8 @@ Hva med:
 - foaf:Agent og subklasser (dct:creator)
 - dcat:Catalog (for dct:hasPart)
 - dcat:CatalogRecord (for dcat:record)
+- dcat:CatalogRecord (for dct:source på CatalogRecord)
+
 
 ### Forslag
 
@@ -185,6 +184,8 @@ dcat:theme
 ### MUST (closed range)
 
 Alle andre kontrollerte vokabularer
+
+Potensiell konflikt på dct:spatial?
 
 
 ### Formulering av sh:message i Type-sjekk
@@ -213,12 +214,23 @@ Enkelte Shapes har feil navn/name.
 ### Feilmeldinger
 Gå gjennom alle feilmeldinger og omformuler.
 
+### class-sjekk
+
+Alle feilmeldinger som nå gir "an instance of \[rdf-Class\]", bør de gjøre class-sjekk i range shapes?
+
+### "refer"
+TODO: fjerne/omskrive "refer to"-formuleringer
+
+### "blank node or URI"
+TODO: Formulere konsekvent: "URI or a Blank Node". Skrevet "Blank Node or URI" noen steder
 
 ------------------------------------------------------------------------------------------------
 ## Avklaringer Standard
 
 Tydeliggjøre forskjellen dcat:hasVersion og dcat:version
 For dcat:version: er dette versjonen for datasettet, eller beskrivelsen?
+
+Skal `adms:VersionNotes` være unik per språk? Ikke definert i standarden nå.
 
 ------------------------------------------------------------------------------------------------
 
@@ -266,6 +278,10 @@ Vurder å splitte opp i separate filer.
 - Range
   - Type på Node som PropertyShape sjekker (sh:class)
   - Kan ikke antas å eksistere i data-graf (eks. typen til Publisher)
+- Class Checks
+  - Av typen sh:class
+  - Hva skal inkluderes i "Core" Shapes, hva skal vi anta at følger med i en katalog?
+  - Hva ligger utenfor (og ev. i Range?)
 - Nodekind
   - kan antas å eksistere i data-grafen
   - kan sjekkes på PropertyShape (sh:nodeKind)
@@ -301,3 +317,9 @@ Eksempel: `:hasShapeCV-provWasGeneratedBy`
 
 Og Node-sjekk:
 `sh:node :AccrualPeriodicityRestriction` eller `sh:node :AccrualPeriodicityShape` ?
+
+## NodeKind checks
+
+Egentlig feil navn for regler som sjekker `sh:datatype`. TODO/Avklare: endre?
+
+The property dcat:temporalResolution may have max. 1 value which MUST be of datatype xsd:duration

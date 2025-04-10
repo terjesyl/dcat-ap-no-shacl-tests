@@ -1,0 +1,66 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+
+PREFIX test: <http://example.com/test-catalog-records/>
+PREFIX testgraphs: <http://example.com/test-graphs/valid/controlled-vocs/catalog-records/>
+
+# ===== Testing valid Catalog descriptions =====
+
+# ----- Status / CV Distribution Status -----
+
+testgraphs:status-1 {
+    test:validCatalogRecordBase
+        adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> a skos:Concept ;
+        skos:notation "COMPLETED" ;
+        skos:prefLabel "Completed"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
+        .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}
+
+
+# ----- Language / CV Language -----
+
+testgraphs:language-1 {
+    test:validCatalogRecordBase
+        dct:language <http://publications.europa.eu/resource/authority/language/NOR> ;
+        .
+
+    <http://publications.europa.eu/resource/authority/language/NOR> a skos:Concept ;
+        skos:notation "NOR" ;
+        skos:prefLabel "Norwegian"@en ;
+        skos:inScheme <http://publications.europa.eu/resource/authority/language> ;
+        .
+
+    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+}

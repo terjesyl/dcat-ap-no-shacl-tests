@@ -23,10 +23,11 @@ TESTS_TO_RUN = [  # must match directory name
 ]
 
 CLASS_KEYS = [  # must match file name (excluding suffixes)
-    'catalog',
-    'dataset',
-    'data-service',
-    'distribution',
+    # 'catalog',
+    # 'dataset',
+    #'data-service',
+    # 'distribution',
+    'catalog-record'
 ]
 
 class PRINT(enum.Enum):
@@ -171,12 +172,18 @@ def _print_results(results):
     print()
 
 
+def _print_triples(graph):
+    for s, o, p in graph:
+        print(s, o, p)
+
+
 def main():
     # Import SHACL rules and ontology
     dcatapno_shacl_rules = parse_graph(CORE_SHACL_RULES_PATH, RANGES_SHACL_RULES_PATH)
     #dcatap_shacl_path = parse_graph(DCATAP_SHACL_RULES_PATH)
     core_shacl_rules = dcatapno_shacl_rules # + dcatap_shacl_rules
     controlled_vocs_shacl_rules = parse_graph(CORE_SHACL_RULES_PATH, RANGES_SHACL_RULES_PATH, CONTROLLED_VOC_SHACL_SHAPES_PATH)
+
     ontology_graph = parse_graph(ONTOLOGY_PATH)
 
     # Import base graphs
@@ -200,7 +207,10 @@ def main():
     }
 
     for valid_or_invalid in TESTS_TO_RUN:
-        for validation_extensions in ["core", "controlled-vocs"]:
+        for validation_extensions in [
+            "core",
+            "controlled-vocs"
+        ]:
             for class_key in CLASS_KEYS:
                 filepath = f"{valid_or_invalid}/{validation_extensions}/{class_key}.trig"
                 base_graph = base_graphs[class_key]
