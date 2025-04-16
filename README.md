@@ -8,6 +8,9 @@ Definere at egenskap skal gjentas kun én gang per språk med `sh:uniqueLang`
 
 Omformulere feilmelding til "There MUST be max. 1 value per language."
 
+F.eks. dct:description er spesifisert ulikt for de ulike klassene, noen **krever** unik per språk, andre spesifiserer ikke det (f.eks. Gebyr).
+Om ulik semantikk må egen regel defineres for der hvor `sh:uniqueLang` gjelder.
+
 ### Contact Point
 
 Sjekke at typene til instanser av contactPoint er disjunkte (disjoint) (hvordan?)
@@ -95,6 +98,8 @@ TODO: relasjoner til Checksum, anta at Checksum er del av katalogen
 
 TODO: skrive om sjekker fra sh:nodeKind sh:IRI til sh:class spdx:Checksum, kan være blanke noder.
 
+TODO: gjør vocab sjekk på Algoritme
+
 ------------------------------------------------------------------------------------------------
 
 ## Kontrollerte vokabular
@@ -171,6 +176,8 @@ class/range restrictions (ex: dcatap:applicableLegislation)
 Legge til pattern (for å matche ELI). Hvordan?
 
 Lage "advanced"-regelsett (sjekk av URL-patterns etc.) gi Warnings.
+
+TODO: Sjekk eli:ResourceType i Vocab
 
 
 ### Hvilke er LEAST 1, hvilke er MUST (closed range)
@@ -323,3 +330,7 @@ Og Node-sjekk:
 Egentlig feil navn for regler som sjekker `sh:datatype`. TODO/Avklare: endre?
 
 The property dcat:temporalResolution may have max. 1 value which MUST be of datatype xsd:duration
+
+# Vanlige feil:
+
+"Must be of type URI": har skrevet verdi med hermetegn `"` istedetfor som URI `< >` i Turtle, eller som `"@value"` i stedet for `"@id"` i JSON-LD.

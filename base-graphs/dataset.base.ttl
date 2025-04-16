@@ -30,7 +30,7 @@ PREFIX test: <http://example.com/test-datasets/>
 
 test:contactPointBase a vcard:Organization ;
     vcard:fn "Base contact point name"@en ;
-    vcard:hasEmail "mailto:example@example.com" ;
+    vcard:hasEmail <mailto:example@example.com> ;
     .
 
 test:validCatalogBase a dcat:Catalog ;

@@ -42,7 +42,7 @@ testgraphs:description-1 {
         dcat:contactPoint [
             a vcard:Group ;
             vcard:fn "Group Contact Point"@en ;
-            vcard:hasEmail "mailto:example@example.com" ;
+            vcard:hasEmail <mailto:example@example.com> ;
         ] ;
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
 
@@ -98,7 +98,7 @@ testgraphs:title-1 {
         dcat:contactPoint [
             a vcard:Group ;
             vcard:fn "Group Contact Point"@en ;
-            vcard:hasEmail "mailto:example@example.com" ;
+            vcard:hasEmail <mailto:example@example.com> ;
         ] ;
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
 

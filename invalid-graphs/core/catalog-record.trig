@@ -94,7 +94,7 @@ testgraphs:primaryTopic-4 {
             dcat:contactPoint [
                 a vcard:Organization ;
                 vcard:fn "Base contact point name"@en ;
-                vcard:hasEmail "mailto:example@example.com" ;
+                vcard:hasEmail <mailto:example@example.com> ;
             ] ;
             dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
             dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> .

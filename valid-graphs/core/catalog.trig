@@ -57,7 +57,7 @@ testgraphs:contactPoint-1 {
         dcat:contactPoint [
             a vcard:Group ;
             vcard:fn "Group Contact Point"@en ;
-            vcard:hasEmail "mailto:example@example.com" ;
+            vcard:hasEmail <mailto:example@example.com> ;
         ]
 }
 

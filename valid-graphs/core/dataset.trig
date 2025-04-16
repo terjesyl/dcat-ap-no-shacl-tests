@@ -46,13 +46,13 @@ testgraphs:all-mandatory-properties-1 {
 testgraphs:contactPoint-1 { # several contact points (in addition to the one in base description)
     <http://example.com/another-contactPoint> a vcard:Organization ;
         vcard:fn "A second contact point name"@en ;
-        vcard:hasEmail "mailto:example2@example.com" .
+        vcard:hasEmail <mailto:example2@example.com> .
 
     test:validDatasetBase
         dcat:contactPoint <http://example.com/another-contactPoint> ;
         dcat:contactPoint [ a vcard:Organization ;
             vcard:fn "A third contact point name"@en ;
-            vcard:hasEmail "mailto:example3@example.com" ;
+            vcard:hasEmail <mailto:example3@example.com> ;
     ] .
 }
 
@@ -309,8 +309,8 @@ testgraphs:frequency-1 {
 
 testgraphs:cost-1 {
     test:validDatasetBase ;
-        cv:hasCost  [ a cv:Cost ] ,
-                    [ a cv:Cost ] ;
+        cv:hasCost  [ a cv:Cost; foaf:page <http://example.com/cost> ] ,
+                    [ a cv:Cost; foaf:page <http://example.com/cost2> ] ;
         .
 }
 
@@ -320,6 +320,7 @@ testgraphs:cost-2 {
         .
 
     <http://example.com/cost> a cv:Cost ;
+        foaf:page <http://example.com/cost>
         .
 }
 

@@ -152,8 +152,8 @@ testgraphs:page-1 {
 
 testgraphs:cost-1 {
     test:validDataServiceBase ;
-        cv:hasCost  [ a cv:Cost ] ,
-                    [ a cv:Cost ] ;
+        cv:hasCost  [ a cv:Cost; cv:hasValue "100.00"^^xsd:double ; cv:currency <http://publications.europa.eu/resource/authority/currency/NOK> ] ,
+                    [ a cv:Cost; foaf:page <http://example.com/cost> ] ;
         .
 }
 
@@ -163,6 +163,7 @@ testgraphs:cost-2 {
         .
 
     <http://example.com/cost> a cv:Cost ;
+        foaf:page <http://example.com/cost>
         .
 }
 
