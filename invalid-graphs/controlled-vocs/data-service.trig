@@ -44,8 +44,6 @@ testgraphs:dataTheme-1 {
         skos:prefLabel "Government"@en ;
         # skos:inScheme intentionally missing;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:dataTheme-2 {
@@ -59,16 +57,12 @@ testgraphs:dataTheme-2 {
         skos:prefLabel "Government"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/data-theme> ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:dataTheme-3 {
     test:validDataServiceBase
         dcat:theme <http://example.com/theme> ; # not a Data Theme
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 # ----- Format / CV filetype -----
@@ -83,8 +77,6 @@ testgraphs:filetype-1 {
         skos:prefLabel "RDF Turtle"@en ;
         # skos:inScheme is intentionally missing
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:filetype-2 {
@@ -98,8 +90,6 @@ testgraphs:filetype-2 {
         skos:prefLabel "RDF Turtle"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:filetype-3 {
@@ -112,8 +102,6 @@ testgraphs:filetype-3 {
         skos:prefLabel "RDF Turtle"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:filetype-4 {
@@ -126,8 +114,6 @@ testgraphs:filetype-4 {
         skos:inScheme <http://publications.europa.eu/resource/authority/file-type> ;
         ] ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:filetype-5 {
@@ -146,8 +132,6 @@ testgraphs:filetype-5 {
         skos:notation "OTHER_FORMAT" ;
         skos:prefLabel "Other Format"@en ;
         skos:inScheme <http://example.com/formats> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -162,8 +146,6 @@ testgraphs:plannedAvailability-1 {
         skos:notation "STABLE" ;
         skos:prefLabel "Stable"@en .
         # skos:inScheme is intentionally missing
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:plannedAvailability-2 {
@@ -176,8 +158,6 @@ testgraphs:plannedAvailability-2 {
         skos:notation "STABLE" ;
         skos:prefLabel "Stable"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/planned-availability> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:plannedAvailability-3 {
@@ -189,8 +169,6 @@ testgraphs:plannedAvailability-3 {
         skos:notation "CODE" ;
         skos:prefLabel "Code"@en ;
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -206,8 +184,6 @@ testgraphs:license-1 {
         skos:prefLabel "Apache 2.0"@en ;
         # skos:inScheme intentionally missing
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:license-2 {
@@ -220,8 +196,6 @@ testgraphs:license-2 {
         skos:notation "APACHE_2_0" ;
         skos:prefLabel "Apache 2.0"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/licence> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:license-3 {
@@ -233,8 +207,6 @@ testgraphs:license-3 {
         skos:notation "CODE" ;
         skos:prefLabel "Code"@en ;
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -251,8 +223,6 @@ testgraphs:status-1 {
         skos:prefLabel "Completed"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
         .
-
-        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:status-2 {
@@ -265,8 +235,6 @@ testgraphs:status-2 {
         skos:prefLabel "Completed"@en ;
         # ... skos:inScheme intentionally missing
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:status-3 {
@@ -278,8 +246,6 @@ testgraphs:status-3 {
         skos:notation "CODE" ;
         skos:prefLabel "Code"@en ;
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -308,8 +274,6 @@ testgraphs:accessRights-2 {
         skos:prefLabel "public"@en ;
         # ... skos:inScheme intentionally missing
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:accessRights-3 {
@@ -321,6 +285,4 @@ testgraphs:accessRights-3 {
         skos:notation "CODE" ;
         skos:prefLabel "Code"@en ;
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }

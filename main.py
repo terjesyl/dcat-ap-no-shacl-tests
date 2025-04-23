@@ -5,6 +5,9 @@ import subprocess
 import enum
 
 BASE_GRAPH_DIR = "./base-graphs"
+BASE_EXTENSION_PATHS = [
+    "./base-graphs/controlled-vocs/agent.base.ttl"
+]
 
 VALID_GRAPHS_DIR = "./valid-graphs"
 INVALID_GRAPHS_DIR = "./invalid-graphs"
@@ -65,19 +68,22 @@ class Colorcodes(object):
 _color = Colorcodes()
 BASE_INDENT = 6
 
-def read_and_parse_base_graphs(folderpath, type_keys):
+
+def read_and_parse_base_graphs(folderpath, type_keys) -> Graph:
     base_graphs = dict()
     for key in type_keys:
         path = Path(f"{folderpath}/{key}.base.ttl").expanduser()
         base_graphs[key] = Graph().parse(path)
     return base_graphs
 
-
-def read_and_parse_base_graph(filepath):
-    base_graph = Graph(Path(filepath).expanduser())
-    base_graph.parse()
-    base_graph = read_and_parse_base_graphs()
-    return base_graph
+def extend_base_graphs(
+        graphs: dict[str, Graph],
+        extension_paths: list[str]
+    ):
+    for _, graph in graphs.items():
+        for path in extension_paths:
+            graph.parse(Path(path).expanduser())
+    return graphs
 
 
 def run_shacl_validation(filepath, shacl_rules, ontology_graph, base_graph):
@@ -219,6 +225,7 @@ def main():
                     shacl_rules = core_shacl_rules
                 elif validation_extensions == "controlled-vocs":
                     shacl_rules = controlled_vocs_shacl_rules
+                    base_graphs = extend_base_graphs(base_graphs, BASE_EXTENSION_PATHS)
                 else:
                     raise RuntimeError("Could not decide SHACL rules, value not one of 'core' or 'controlled-vocs'")
                 success, reports = run_validation(

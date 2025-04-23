@@ -1,0 +1,54 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX odrs: <http://schema.theodi.org/odrs#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rov: <http://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcatap: <http://data.europa.eu/r5r>
+PREFIX breg: <http://data.europa.eu/breg>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dqv: <http://www.w3.org/ns/dqv#>
+PREFIX br:        <https://raw.githubusercontent.com/Informasjonsforvaltning/organization-catalog/main/src/main/resources/ontology/organization-catalog.owl#>
+PREFIX orgstatus: <https://raw.githubusercontent.com/Informasjonsforvaltning/organization-catalog/main/src/main/resources/ontology/org-status.ttl#>
+PREFIX orgtype:   <https://raw.githubusercontent.com/Informasjonsforvaltning/organization-catalog/main/src/main/resources/ontology/org-type.ttl#>
+
+PREFIX test: <http://example.com/test-distributions/>
+
+<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827>
+        a foaf:Agent ; # currently not defined by organization-catalog
+        a                      rov:RegisteredOrganization;
+        dct:identifier         "991825827";
+        org:subOrganizationOf  <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469>;
+        rov:legalName          "DIGITALISERINGSDIREKTORATET";
+        rov:orgStatus          orgstatus:NormalAktivitet;
+        rov:orgType            orgtype:ORGL;
+        rov:registration       [ a                  adms:Identifier;
+                                 dct:issued         "2007-10-15";
+                                 skos:notation      "991825827";
+                                 adms:schemaAgency  "Brønnøysundregistrene"
+                               ];
+        foaf:homepage          <http://www.digdir.no>;
+        foaf:name              "Digitaliseringsdirektoratet"@nb;
+        br:municipality        <https://data.geonorge.no/administrativeEnheter/kommune/id/173018>;
+        br:nace                "84.110";
+        br:norwegianRegistry   <https://data.brreg.no/enhetsregisteret/api/enheter/991825827>;
+        br:orgPath             "/STAT/932384469/991825827";
+        br:sectorCode          "6100" .

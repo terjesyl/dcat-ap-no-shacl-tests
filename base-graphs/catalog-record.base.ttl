@@ -43,13 +43,3 @@ test:validCatalogBase a dcat:Catalog ;
 test:validCatalogRecordBase a dcat:CatalogRecord ;
     dct:modified "2025-01-01"^^xsd:date ;
     foaf:primaryTopic test:validCatalogBase .
-
-
-# -------------------------------------------------
-# THE FOLLOWING STATEMENTS SHOULD NOT BE NECESSARY!
-# -------------------------------------------------
-# TODO: fix
-
-#<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
-
-test:validCatalogBase dct:identifier "http://example.com/test-datasets/validCatalogBase" .

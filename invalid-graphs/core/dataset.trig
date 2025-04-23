@@ -116,10 +116,6 @@ testgraphs:publisher-3 {
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> , # too many values
                       <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> ;
         .
-    
-    # TODO: should not be necessary, remove
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> a foaf:Agent .
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 

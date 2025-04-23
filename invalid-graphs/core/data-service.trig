@@ -254,7 +254,6 @@ testgraphs:servesDataset-2 {
             dcat:contactPoint test:contactPointBase ;
             dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
             dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
-            dct:identifier "123456789" ;  # TODO: remove
         ] ;
         .
 }

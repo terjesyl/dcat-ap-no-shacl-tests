@@ -220,10 +220,7 @@ testgraphs:record-1 {
 
 testgraphs:creator-1 {
     test:validCatalogBase
-        dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .  # too many values
-
-        # TODO: should this triple be necessary?
-        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
+        dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .  # too many values, is in addition to creator defined in validCatalogBase
 }
 
 

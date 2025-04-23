@@ -45,8 +45,6 @@ testgraphs:description-1 {
             vcard:hasEmail <mailto:example@example.com> ;
         ] ;
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:description-2 {
@@ -74,8 +72,6 @@ testgraphs:contactPoint-1 {
         dct:description "Catalog missing contact point"@en ;
         # dcat:contactPoint intentionally missing
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:contactPoint-2 {
@@ -101,8 +97,6 @@ testgraphs:title-1 {
             vcard:hasEmail <mailto:example@example.com> ;
         ] ;
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:title-2 {
@@ -131,7 +125,7 @@ testgraphs:publisher-1 {
 
 testgraphs:publisher-2 {
     test:validCatalogBase
-        dct:publisher [ a foaf:Agent ] .  # wrong type
+        dct:publisher [ a foaf:Agent ] .  # blank nodes not allowed
 }
 
 testgraphs:publisher-3 {
@@ -142,10 +136,6 @@ testgraphs:publisher-3 {
         dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> , # too many values
                       <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> ;
         .
-
-    # TODO: should not be necessary, remove
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/123456789> a foaf:Agent .  
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -371,10 +361,6 @@ testgraphs:creator-3 {
     test:validCatalogBase
         dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ,  # too many values
                     <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> .
-
-        # TODO: should these be necessary?
-        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
-        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> a foaf:Agent .
 }
 
 

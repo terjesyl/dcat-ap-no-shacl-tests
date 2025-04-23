@@ -47,8 +47,6 @@ testgraphs:license-1 {
         skos:prefLabel "Apache 2.0"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/licence> ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 
@@ -64,6 +62,4 @@ testgraphs:language-1 {
         skos:prefLabel "Norwegian"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/language> ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }

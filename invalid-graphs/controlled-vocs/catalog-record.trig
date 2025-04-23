@@ -45,8 +45,6 @@ testgraphs:status-1 {
         skos:prefLabel "Completed"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/distribution-status> ;
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:status-2 {
@@ -59,8 +57,6 @@ testgraphs:status-2 {
         skos:prefLabel "Completed"@en ;
         # ... skos:inScheme intentionally missing
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:status-3 {
@@ -72,8 +68,6 @@ testgraphs:status-3 {
         skos:notation "CODE" ;
         skos:prefLabel "Code"@en ;
         skos:inScheme <http://example.com/not-an-eu-controlled-vocabulary> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 # ----- Language / CV Language -----
@@ -87,8 +81,6 @@ testgraphs:language-1 {
         skos:notation "NOR" ;
         skos:prefLabel "Norwegian"@en ;
         skos:inScheme <http://publications.europa.eu/resource/authority/access-right> .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:language-2 {
@@ -101,13 +93,9 @@ testgraphs:language-2 {
         skos:prefLabel "Norwegian"@en ;
         # ... skos:inScheme intentionally missing
         .
-
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }
 
 testgraphs:language-3 {
     test:validCatalogRecordBase
         dct:language <http://publications.europa.eu/resource/authority/language/NOR> .  # resource missing
-    
-    <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
 }

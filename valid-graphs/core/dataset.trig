@@ -415,10 +415,6 @@ testgraphs:creator-1 {
     test:validDatasetBase
         dct:creator <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ,
                     <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> .
-
-        # TODO: should these be necessary?
-        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
-        <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/932384469> a foaf:Agent .
 }
 
 

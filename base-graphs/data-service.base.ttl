@@ -46,11 +46,3 @@ test:validDataServiceBase a dcat:DataService ;
     dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
     dcat:endpointURL <https://example.com/> ;
     .
-
-# -------------------------------------------------
-# THE FOLLOWING STATEMENTS SHOULD NOT BE NECESSARY!
-# -------------------------------------------------
-
-#<https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> a foaf:Agent .
-
-test:validCatalogBase dct:identifier "http://example.com/test-dataservices/validCatalogBase" .

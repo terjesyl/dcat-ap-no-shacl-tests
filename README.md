@@ -334,3 +334,48 @@ The property dcat:temporalResolution may have max. 1 value which MUST be of data
 # Vanlige feil:
 
 "Must be of type URI": har skrevet verdi med hermetegn `"` istedetfor som URI `< >` i Turtle, eller som `"@value"` i stedet for `"@id"` i JSON-LD.
+
+# Innenfor og utenfor høstet fil: Entity Types
+
+Se til DCAT-AP Feeds' [definisjon](https://semiceu.github.io/LDES-DCAT-AP-feeds/index.html#types):
+
+- Standalone entities
+- Embedded entities
+- Referenced entities
+
+## Standalone entities
+
+- dcat:Catalog
+- dcat:Dataset
+- dcat:Distribution
+- dcat:DataService
+- foaf:Agent (dct:publisher -> foaf:Agent er **Referenced** i DCAT-AP-NO!)
+- vcard:Kind
+- (dcterms:LicenseDocument) - only use this when you need to define licenses that are not well known.
+
+## Embedded entities
+
+- spdx:Checksum
+- dcterms:Location
+- locn:Geometry
+- dcat:Relationship
+- prov:Activity (BØR-krav på prov:wasGeneratedBy -> prov:ActivityType i DCAT-AP-NO)
+- dcat:Attribution
+- spdx:ChecksumAlgorithm
+- foaf:Document (???)
+- adms:Identifier
+
+## Referenced entities
+
+- dct:license pointing to entities that are expected to be typed as dcterms:LicenseDocument.
+- a range of different properties pointing to skos:Concept (TODO, check which)
+- dcat:themeTaxonomy pointing to an instance of skos:ConceptScheme
+- dcterms:accrualPeriodicity pointing to dcterms:Frequency (or just a skos:Concept)
+- dcterm:language pointing to an instance of dcterms:LinguisticSystem
+- dcterms:format, dcat:mediaType, dcat:packageFormat or dcat:compressFormat pointing to a dcterms:MediaType instance
+- dcterms:temporal pointing to a dcterms:PeriodOrTime instance
+- odrl:hasPolicy pointing to a odrl:Policy instance
+- dcterms:provenance pointing to a dcterms:ProvenanceStatement instance
+- dcterms:rights pointing to an instance of dcterms:RightsStatement
+- dcat:hadRole pointing to a dcat:Role instance
+- dcterms:conformsTo pointing to a dcterms:Standard instance
