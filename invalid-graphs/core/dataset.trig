@@ -131,11 +131,10 @@ testgraphs:theme-2 {
         dcat:theme [ a skos:Concept ] .  # wrong type
 }
 
-# TODO: fix check, should have exact match/hasValue when Data Theme
-# testgraphs:theme-3 {
-#     test:validDatasetBase a dcat:Dataset ;
-#         dcat:theme <http://publications.europa.eu/resource/authority/data-theme/NOT-A-VALID-CODE> .  # Not a valid code in Data Theme
-# }
+testgraphs:theme-3 {
+    test:validDatasetBase a dcat:Dataset ;
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/NOT-A-VALID-CODE> .  # Not a valid code in Data Theme
+}
 
 
 # Recommended and Optional properties
